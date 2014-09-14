@@ -55,7 +55,7 @@ namespace tskmProject.Controllers
             if (u != null)
             {
                 FormsAuthentication.SetAuthCookie(user.username, true);
-                return RedirectToAction("AdminView");
+                return RedirectToAction("Menu");
                 
             }
             else

@@ -432,6 +432,8 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Unauthorized.cshtml" />
     <Content Include="Views\Account\Menu.cshtml" />
+    <Content Include="Views\Account\_ITMenu.cshtml" />
+    <Content Include="Views\Account\_OtherMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
