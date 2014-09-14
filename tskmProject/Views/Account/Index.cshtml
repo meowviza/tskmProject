@@ -1,0 +1,45 @@
+﻿@model System.Data.Entity.DbSet<tskmProject.Models.User>
+
+@{
+    ViewBag.Title = "จัดการชื่อผู้ใช้งาน";
+}
+
+<div class="row">
+    <h3 class="page-header">จัดการชื่อผู้ใช้งาน</h3>
+</div>
+@Html.ActionLink("เพิ่มผู้ใช้งาน", "Create", null, new { @class = "btn btn-default", role = "button" })
+
+<br />
+<br />
+<table class="table table-striped">
+    <tr>
+        <th>ชื่อ</th>
+        <th>นามสกุล</th>
+        <th>ชื่อผู้ใช้งาน</th>
+        <th>สิทธิ์การใช้งาน</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.userFname</td>
+            <td>@item.userLname</td>
+            <td>@item.username</td>
+            <td>
+                <ul class="list-unstyled">
+                    @foreach (var role in item.Roles)
+                    {
+                        <li>@role.Name </li>
+                    }
+                </ul>
+
+            </td>
+            <td>
+
+                @Html.ActionLink("แก้ไข", "Edit", new { id = item.userID }, new { @class = "btn btn-info", role = "button" })
+                <button type="button" class="btn btn-danger">ลบ</button>
+            </td>
+        </tr>
+    }
+
+</table>

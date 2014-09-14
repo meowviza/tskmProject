@@ -1,0 +1,46 @@
+﻿@model IEnumerable<tskmProject.Models.Knowledgebase>
+
+@{
+    ViewBag.Title = "รายการใบความรู้";
+}
+
+<div class="row">
+    <h3 class="page-header">รายการใบความรู้</h3>
+</div>
+
+<button type="button" class="btn btn-default">สร้างใบความรู้</button>
+
+<br />
+<br />
+
+    <table class="table table-striped">
+    <tr>
+        <th>ชื่อเรื่อง</th>
+        <th>ประเภทใบความรู้</th>
+        <th>วันที่สร้างใบงาน</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.knowledgeTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catagory.catagoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.knowledgeDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("แก้ไข", "Edit", new { id = item.knowledgeID }) |
+                @Html.ActionLink("แสดงรายละเอียด", "Details", new { id = item.knowledgeID }) |
+                @Html.ActionLink("ลบ", "Delete", new { id = item.knowledgeID })
+            </td>
+        </tr>
+    }
+
+</table>
+

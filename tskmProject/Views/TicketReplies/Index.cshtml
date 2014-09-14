@@ -1,0 +1,60 @@
+﻿@model IEnumerable<tskmProject.Models.TicketReply>
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.replyDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.replyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket.ticketTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.userFname)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.replyDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.replyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ticket.ticketTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.userFname)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.replyID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.replyID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.replyID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

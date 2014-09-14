@@ -1,0 +1,59 @@
+﻿@model tskmProject.Models.Knowledgebase
+
+@{
+    ViewBag.Title = "แสดงรายละเอียด";
+}
+
+
+<div class="row">
+    <h3 class="page-header">รายละเอียดใบความรู้</h3>
+</div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <br />
+            <dl class="dl-horizontal">
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.knowledgeTitle, "ชื่อเรื่อง")                    
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.knowledgeTitle)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.knowledgeDetail, "รายละเอียด")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.knowledgeDetail)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.knowledgeDate, "วันที่สร้าง")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.knowledgeDate)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.knowledgeDetail, "ประเภทความรู้")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Catagory.catagoryName)
+                </dd>
+
+                <br />
+                <p class="col-md-4">
+                    @Html.ActionLink("แก้ไข", "Edit", new { id = Model.knowledgeID }) |
+                    @Html.ActionLink("กลับสู่เมนูหลัก", "Index")
+                </p>
+
+            </dl>
+        </div>
+    </div>
+</div>
+    

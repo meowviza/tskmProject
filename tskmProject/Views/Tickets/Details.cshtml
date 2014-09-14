@@ -1,0 +1,70 @@
+﻿@model tskmProject.Models.Ticket
+
+@{
+    ViewBag.Title = "แสดงรายละเอียด";
+}
+
+<div class="row">
+    <h3 class="page-header">รายละเอียดใบงาน</h3>
+</div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <br />
+            <dl class="dl-horizontal">
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.ticketTitle, "ชื่อเรื่อง")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ticketTitle)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.Catagory.catagoryName, "ประเภทใบงาน")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Catagory.catagoryName)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.ticketDetail, "รายละเอียดใบงาน")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ticketDetail)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.ticketDate, "วันที่สร้าง")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ticketDate)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.Status.statusName, "สถานะใบงาน")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Status.statusName)
+                </dd>
+
+                <dt class="col-md-4">
+                    @Html.LabelFor(model => model.User.userFname, "ผู้สร้าง")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.userFname)
+                </dd>
+
+                <p>
+                    @Html.ActionLink("แก้ไข", "Edit", new { id = Model.ticketID }) |
+                    @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
+                </p>
+
+            </dl>
+            </div>
+        </div>

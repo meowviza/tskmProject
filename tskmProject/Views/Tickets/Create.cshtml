@@ -1,0 +1,109 @@
+﻿@model tskmProject.Models.Ticket
+@using System.Web.Security
+
+@{
+    ViewBag.Title = "สร้างใบงาน";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <h4>สร้างใบงาน</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ticketTitle, "ชื่อเรื่อง", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.ticketTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ticketTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.catagoryID, "ประเภทใบงาน", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("catagoryID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.catagoryID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userType, "สิทธิ์การใช้งาน", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+
+                        @foreach (var item in ViewBag.Roles)
+                        {
+                            @Html.RadioButtonFor(model => model.Roles, Roles.Name, new { @class = "form-control" });
+                        }
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ticketDate, "วันที่เปิดใบงาน", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.ticketDate, new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(model => model.ticketDate)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ticketDetail, "รายละเอียดงาน", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextAreaFor(model => model.ticketDetail, 10, 80, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ticketDetail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Place, "สถานที่", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextAreaFor(model => model.ticketDetail, 3, 50, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Tel, "เบอร์ติดต่อ", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">เอกสารประกอบ</label>
+                    <div class="col-md-10">
+                        @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <input type="file" name="FileUpload" />
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" value="Create" class="btn btn-default">บันทึกใบงาน</button>
+                        @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(function () { // will trigger when the document is ready
+        $('.datepicker').datepicker(); //Initialise any date pickers
+    });
+</script>

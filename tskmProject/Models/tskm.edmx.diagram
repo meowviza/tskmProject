@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ae9d0644c404e76960c30217ba5f318" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="tskm.Department" Width="1.5" PointX="9.5" PointY="5.75" />
+        <EntityTypeShape EntityType="tskm.User" Width="1.5" PointX="6.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tskm.Ticket" Width="1.5" PointX="1" PointY="3.625" />
+        <EntityTypeShape EntityType="tskm.Catagory" Width="1.5" PointX="8.5" PointY="3.625" />
+        <EntityTypeShape EntityType="tskm.Status" Width="1.5" PointX="4" PointY="2.5" />
+        <EntityTypeShape EntityType="tskm.Knowledgebase" Width="1.5" PointX="11.375" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tskm.TicketReply" Width="1.5" PointX="4.25" PointY="5.75" />
+        <EntityTypeShape EntityType="tskm.KnowledgeComment" Width="1.5" PointX="1.125" PointY="0.5" />
+        <EntityTypeShape EntityType="tskm.File" Width="1.5" PointX="1.5" PointY="8.625" />
+        <AssociationConnector Association="tskm.DepartmentUser" />
+        <AssociationConnector Association="tskm.CatagoryKnowledgebase" />
+        <AssociationConnector Association="tskm.CatagoryTicket" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="tskm.StatusTicket" />
+        <AssociationConnector Association="tskm.TicketTicketReply" />
+        <AssociationConnector Association="tskm.KnowledgebaseKnowledgeComment" />
+        <AssociationConnector Association="tskm.UserKnowledgeComment" />
+        <AssociationConnector Association="tskm.UserTicket" />
+        <AssociationConnector Association="tskm.UserTicketReply" />
+        <EntityTypeShape EntityType="tskm.Role" Width="1.5" PointX="7.5" PointY="7.125" />
+        <AssociationConnector Association="tskm.UserRoles" />
+        <AssociationConnector Association="tskm.TicketFiles" />
+        <AssociationConnector Association="tskm.FileKnowledgebases" />
+        <AssociationConnector Association="tskm.UserKnowledgebase" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

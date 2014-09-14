@@ -1,0 +1,117 @@
+﻿@model tskmProject.Models.User
+
+@{
+    ViewBag.Title = "จัดการชื่อผู้ใช้งาน";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <br />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.userID)
+    <div class="form-horizontal">
+        <br />
+        <h4>จัดการชื่อผู้ใช้งาน</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<br />*@
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.username, "ชื่อผู้ใช้งาน", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.password, "รหัสผ่าน", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-3">
+                        @Html.PasswordFor(model => model.password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userFname, "ชื่อ", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.userFname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userFname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userLname, "นามสกุล", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.userLname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userLname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userTel, "เบอร์ติดต่อ", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.userTel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userTel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userEmail, "อีเมล", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.userEmail, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userEmail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userPosition, "ตำแหน่ง", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.userPosition, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userPosition, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.departmentID, "ฝ่าย/แผนก", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-5">
+                        @Html.DropDownListFor(model => model.departmentID, new SelectList(ViewBag.DepartmentList, "departmentID", "departmentName", Model.departmentID), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.departmentID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">สิทธิ์การใช้งาน</label>
+                    <div class="col-md-5">
+                        @{
+                            List<tskmProject.Models.Role> Roles = ViewBag.Roles;
+                        }
+                        @Html.CheckBoxListFor(model => model.SelectedRoleIDs,
+                        model => Roles,
+                        entity => entity.roleID,
+                        entity => entity.Name,
+                        model => model.Roles)
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" value="Create" class="btn btn-default">ยืนยันการแก้ไข</button>
+                        @Html.ActionLink("กลับหน้าหลัก", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

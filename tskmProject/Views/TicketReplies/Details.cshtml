@@ -1,0 +1,58 @@
+﻿@model tskmProject.Models.TicketReply
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>TicketReply</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.replyDetail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.replyDetail)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.replyDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.replyDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ticket.ticketTitle)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.ticketTitle)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.User.userFname)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.User.userFname)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.replyID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
