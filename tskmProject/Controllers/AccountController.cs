@@ -98,13 +98,9 @@ namespace tskmProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         [Authorize]
-        public ActionResult AdminView()
-        {
-            return View();
-        }
-        [Authorize]
-        public ActionResult UserView()
+        public ActionResult Menu()
         {
             return View();
         }

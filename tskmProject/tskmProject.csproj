@@ -430,9 +430,8 @@
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Account\AdminView.cshtml" />
-    <Content Include="Views\Account\UserView.cshtml" />
     <Content Include="Views\Account\Unauthorized.cshtml" />
+    <Content Include="Views\Account\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
