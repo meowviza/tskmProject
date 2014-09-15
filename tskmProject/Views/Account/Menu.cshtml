@@ -1,11 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Menu";
+    ViewBag.Title = "เมนูหลัก";
 }
 
 <div class="row">
     <div class="col-md-12">
-        <h2>Menu</h2>
+        <div class="row">
+            <h3 class="page-header">เมนูหลัก</h3>
+        </div>
+
         @if (User.IsInRole("เจ้าหน้าที่ไอที"))
         {
             @Html.Partial("_ITMenu")
