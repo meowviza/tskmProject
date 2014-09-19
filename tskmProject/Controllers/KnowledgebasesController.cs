@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using tskmProject.Models;
+using System.Web.Security;
 
 namespace tskmProject.Controllers
 {
@@ -52,8 +53,14 @@ namespace tskmProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Knowledgebases.Add(knowledgebase);
-                db.SaveChanges();
+                int? userID = CurrentUser.GetUserID();
+
+                if (userID != null)
+                {
+                    knowledgebase.userID = userID.Value; 
+                    db.Knowledgebases.Add(knowledgebase);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -87,6 +94,7 @@ namespace tskmProject.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(knowledgebase).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

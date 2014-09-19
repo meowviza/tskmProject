@@ -69,6 +69,7 @@ namespace tskmProject.Controllers
         {
             ViewBag.Roles = db.Roles.ToList();
             ViewBag.DepartmentList = db.Departments;
+
             User m_user = db.Users.SingleOrDefault(x => x.userID == id);
             if (m_user != null)
             {

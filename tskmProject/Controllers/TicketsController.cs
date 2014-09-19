@@ -80,8 +80,14 @@ namespace tskmProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Tickets.Add(ticket);
-                db.SaveChanges();
+                int? userID = CurrentUser.GetUserID();
+
+                if (userID != null)
+                {
+                    ticket.userID = userID.Value;
+                    db.Tickets.Add(ticket); ;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
