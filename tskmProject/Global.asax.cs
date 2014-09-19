@@ -36,6 +36,9 @@ namespace tskmProject
                     System.Threading.Thread.CurrentPrincipal = Principal;
                 }
             }
+
+            // Udpate CurrentUser
+            CurrentUser.RefreshCache();
         }
     }
 }
