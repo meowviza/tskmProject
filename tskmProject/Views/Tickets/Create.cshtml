@@ -1,5 +1,4 @@
 ﻿@model tskmProject.Models.Ticket
-@using System.Web.Security
 
 @{
     ViewBag.Title = "สร้างใบงาน";
@@ -37,9 +36,9 @@
                     @Html.LabelFor(m => m.userType, "ประเภทการแจ้ง", new { @class = "col-md-2 control-label" })
                     <div class="col-md-6">
 
-                        @foreach (var item in ViewBag.Roles)
+                        @foreach (var item in ViewBag.UserRoles)
                         {
-                            @Html.RadioButtonFor(model => model.Roles, Roles.Name, new { @class = "form-control" });
+                            @Html.RadioButtonFor(model => model.Role, item.roleID, new { @class = "form-control" , role="radio"});
                         }
 
                     </div>

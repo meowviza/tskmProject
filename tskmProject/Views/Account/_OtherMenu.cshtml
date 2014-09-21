@@ -1,26 +1,29 @@
 ﻿
 <div class="jumbotron">
     <div class="container">
-        <div class="col-md-4">
-            <p class="text-center">
-                <img src="~/images/ticket.png" /><br />
-                @Html.ActionLink("สร้างใบงาน", "Create", "Tickets")                
-            </p>
-        </div>
-        
-        <div class="col-md-4">
-            <p class="=text-center">
-                <img src="~/images/task_report.png" /><br />
-                @Html.ActionLink("ใบงาน", "Index", "Tickets")               
-            </p><br />
-        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="text-center">
+                    <img src="~/images/ticket.png" /> <br />
+                    @Html.ActionLink("สร้างใบงาน", "Create", "Tickets")
+                </p>
+            </div>
 
-        <div class="col-md-4">
-            <p class="text-center">
-                <img src="~/images/search.png" /><br />
-                @Html.ActionLink("องค์ความรู้", "Index", "Knowledgebases")               
-            </p>
-        </div>
+            <div class="col-md-4">
+                <p class="=text-center">
+                    <img src="~/images/task_report.png" /> <br />
+                    @Html.ActionLink("ใบงาน", "Index", "Tickets")
+                </p>
 
+            </div>
+
+            <div class="col-md-4">
+                <p class="text-center">
+                    <img src="~/images/search.png" /> <br />
+                    @Html.ActionLink("องค์ความรู้", "Index", "Knowledgebases")
+                </p>
+            </div>
+
+        </div>
     </div>
 </div>

@@ -64,12 +64,12 @@ namespace tskmProject.Controllers
             ViewBag.statusID = new SelectList(db.Status, "statusID", "statusName");
             ViewBag.userID = new SelectList(db.Users, "userID", "userFname");
 
-            ViewBag.Roles = from role in db.Roles
-                                where role.roleID == 1
-                                select role.Name;
-
+            //ViewBag.UserRoles = from user in db.Users
+            //                    where user.userID == user.userID
+            //                    select user.userID;
             return View();
         }
+
 
         // POST: Tickets/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

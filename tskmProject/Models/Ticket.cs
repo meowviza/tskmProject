@@ -30,11 +30,16 @@ namespace tskmProject.Models
         public string Place { get; set; }
         public string Tel { get; set; }
         public string userType { get; set; }
+        public bool IsChecked { get; set; }
+
     
         public virtual Catagory Catagory { get; set; }
         public virtual Status Status { get; set; }
         public virtual ICollection<TicketReply> TicketReply { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<File> Files { get; set; }
+
+        
     }
+
 }
