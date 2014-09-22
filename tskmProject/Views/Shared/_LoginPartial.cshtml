@@ -1,21 +1,15 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+﻿<ul class="nav navbar-nav navbar-right">
+    @if (Request.IsAuthenticated)
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("ยินดีต้อนรับ " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            <span class="navbar-text">ยินดีต้อนรับ @CurrentUser.GetFullName()!</span>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">ออกจากระบบ</a></li>
+        <li>
+            @Html.ActionLink("ออกจากระบบ", "Logout", "Account", null)
+        </li>
+        }
+        else
+        {
+        <li>@Html.ActionLink("Log in", "Login", "Account", null)</li>
+        }
     </ul>
-    }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Log in", "Log in", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}

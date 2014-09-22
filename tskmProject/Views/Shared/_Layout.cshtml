@@ -19,14 +19,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">   
                     <li>@Html.ActionLink("หน้าหลัก", "Login", "Account")</li>
-                    <li>@Html.ActionLink("ใบงาน", "Index", "Ticket")</li>
-                    <li>@Html.ActionLink("องค์ความรู้", "Index", "Knowledge")</li>
+                    <li>@Html.ActionLink("ใบงาน", "Index", "Tickets")</li>
+                    <li>@Html.ActionLink("องค์ความรู้", "Index", "Knowledgebases")</li>
                     
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                </ul>
-
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>

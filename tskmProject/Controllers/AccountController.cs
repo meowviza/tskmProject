@@ -43,6 +43,11 @@ namespace tskmProject.Controllers
         }
         public ActionResult Login()
         {
+            if (CurrentUser.GetUserID() != null)
+            {
+                return RedirectToAction("Menu");
+            }
+
             return View();
         }
 
