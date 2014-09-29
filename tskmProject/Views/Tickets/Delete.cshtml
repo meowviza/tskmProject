@@ -18,7 +18,7 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.ticketTitle)
+                @Html.LabelFor(model => model.ticketTitle, "เรื่อง")
             </dt>
     
             <dd>
@@ -26,15 +26,15 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.contractChannel)
+                @Html.LabelFor(model => model.Catagory.catagoryName, "ประเภทใบงาน")
             </dt>
-    
+
             <dd>
-                @Html.DisplayFor(model => model.contractChannel)
+                @Html.DisplayFor(model => model.Catagory.catagoryName)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.ticketDetail)
+                @Html.LabelFor(model => model.ticketDetail,"รายละเอียด")
             </dt>
     
             <dd>
@@ -42,36 +42,29 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.ticketDate)
+                @Html.LabelFor(model => model.ticketDate, "วันที่เปิดใบงาน")
             </dt>
-    
+                
             <dd>
                 @Html.DisplayFor(model => model.ticketDate)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.Catagory.catagoryName)
+                @Html.LabelFor(model => model.User.userFname, "ผู้เปิดใบงาน")
             </dt>
-    
+
             <dd>
-                @Html.DisplayFor(model => model.Catagory.catagoryName)
+                @Html.DisplayFor(model => model.User.userFname)
             </dd>
-    
+        
             <dt>
-                @Html.DisplayNameFor(model => model.Status.statusName)
+                @Html.LabelFor(model => model.Status.statusName, "สถานะ")
             </dt>
     
             <dd>
                 @Html.DisplayFor(model => model.Status.statusName)
             </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.User.userFname)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.User.userFname)
-            </dd>
+   
     
         </dl>
     
@@ -80,7 +73,7 @@
     
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("กลับสู่เมนูหลัก", "Index")
             </div>
         }
     </div>

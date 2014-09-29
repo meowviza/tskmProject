@@ -2,7 +2,7 @@
     @if (Request.IsAuthenticated)
     {
         <li>
-            <span class="navbar-text">ยินดีต้อนรับ @CurrentUser.GetFullName()!</span>
+            <span class="navbar-text"><b>ยินดีต้อนรับ</b>  @CurrentUser.GetFullName()</span>
         </li>
         <li>
             @Html.ActionLink("ออกจากระบบ", "Logout", "Account", null)
@@ -10,6 +10,6 @@
         }
         else
         {
-        <li>@Html.ActionLink("Log in", "Login", "Account", null)</li>
+        <li>@Html.ActionLink("เข้าสู่ระบบ", "Login", "Account", null)</li>
         }
     </ul>

@@ -91,11 +91,19 @@ namespace tskmProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "knowledgeID,knowledgeTitle,knowledgeDetail,knowledgeDate,catagoryID")] Knowledgebase knowledgebase)
         {
+
             if (ModelState.IsValid)
             {
-                db.Entry(knowledgebase).State = EntityState.Modified;
+                int? userID = CurrentUser.GetUserID();
 
-                db.SaveChanges();
+                if (userID != null)
+                {
+                    knowledgebase.userID = userID.Value;
+
+                    db.Entry(knowledgebase).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.catagoryID = new SelectList(db.Catagories, "catagoryID", "catagoryName", knowledgebase.catagoryID);

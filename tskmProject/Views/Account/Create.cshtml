@@ -40,6 +40,15 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <br />
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userCode, "รหัสพนักงาน", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.userCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
                 <div class="form-group">
                     @Html.LabelFor(m => m.userFname, "ชื่อ", new { @class = "col-md-2 control-label" })
                     <div class="col-md-4">

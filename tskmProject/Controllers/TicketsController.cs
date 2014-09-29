@@ -63,10 +63,6 @@ namespace tskmProject.Controllers
             ViewBag.catagoryID = new SelectList(db.Catagories, "catagoryID", "catagoryName");
             ViewBag.statusID = new SelectList(db.Status, "statusID", "statusName");
             ViewBag.userID = new SelectList(db.Users, "userID", "userFname");
-
-            //ViewBag.UserRoles = from user in db.Users
-            //                    where user.userID == user.userID
-            //                    select user.userID;
             return View();
         }
 
@@ -124,8 +120,15 @@ namespace tskmProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ticket).State = EntityState.Modified;
-                db.SaveChanges();
+                int? userID = CurrentUser.GetUserID();
+
+                if (userID != null)
+                {
+                    ticket.userID = userID.Value;
+                    db.Entry(ticket).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.catagoryID = new SelectList(db.Catagories, "catagoryID", "catagoryName", ticket.catagoryID);

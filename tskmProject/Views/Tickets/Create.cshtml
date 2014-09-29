@@ -32,18 +32,6 @@
                     </div>
                 </div>
 
-                @*<div class="form-group">
-                    @Html.LabelFor(m => m.userType, "ประเภทการแจ้ง", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-6">
-
-                        @foreach (var item in ViewBag.UserRoles)
-                        {
-                            @Html.RadioButtonFor(model => model.Role, item.roleID, new { @class = "form-control" , role="radio"});
-                        }
-
-                    </div>
-                </div>*@
-
                 <div class="form-group">
                     @Html.LabelFor(m => m.ticketDate, "วันที่เปิดใบงาน", new { @class = "col-md-2 control-label" })
                     <div class="col-md-2">

@@ -17,17 +17,15 @@
                 @Html.ActionLink("tskmProject", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">   
+                <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("หน้าหลัก", "Login", "Account")</li>
                     <li>@Html.ActionLink("ใบงาน", "Index", "Tickets")</li>
                     <li>@Html.ActionLink("องค์ความรู้", "Index", "Knowledgebases")</li>
-                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -35,20 +33,17 @@
             </div>
         </div>
     </div>
-
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - ฝ่ายปฏิบัติการและบริการเครือข่ายเทคโนโลยีสารสนเทศ</p>
-            </footer>
-        </div>
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - ฝ่ายปฏิบัติการและบริการเครือข่ายเทคโนโลยีสารสนเทศ</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </body>
 </html>

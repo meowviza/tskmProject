@@ -32,6 +32,7 @@ namespace tskmProject.Models
         public string username { get; set; }
         public string password { get; set; }
         public int departmentID { get; set; }
+        public string userCode { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual ICollection<KnowledgeComment> KnowledgeComment { get; set; }
