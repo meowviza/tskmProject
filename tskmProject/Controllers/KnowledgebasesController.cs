@@ -57,7 +57,8 @@ namespace tskmProject.Controllers
 
                 if (userID != null)
                 {
-                    knowledgebase.userID = userID.Value; 
+                    knowledgebase.userID = userID.Value;
+                    knowledgebase.knowledgeDate = DateTime.Now;
                     db.Knowledgebases.Add(knowledgebase);
                     db.SaveChanges();
                 }
@@ -144,5 +145,34 @@ namespace tskmProject.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #region Comment Part
+        public ActionResult Comment(int id)
+        {
+            return View(new KnowledgeComment() { knowledgeID = id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Comment(KnowledgeComment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                int? userID = CurrentUser.GetUserID();
+                if (userID.HasValue)
+                {
+                    comment.userID = userID.Value;
+                    comment.commentDate = DateTime.Now;
+
+                    db.KnowledgeComments.Add(comment);
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Details", new { id = comment.knowledgeID });
+            }
+
+            return View(comment);
+        }
+        #endregion
     }
 }

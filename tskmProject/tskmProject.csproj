@@ -427,6 +427,7 @@
     <Content Include="Views\Account\Menu.cshtml" />
     <Content Include="Views\Account\_ITMenu.cshtml" />
     <Content Include="Views\Account\_OtherMenu.cshtml" />
+    <Content Include="Views\Knowledgebases\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
