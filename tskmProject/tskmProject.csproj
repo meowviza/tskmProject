@@ -209,6 +209,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>tskm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.CustomizedField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

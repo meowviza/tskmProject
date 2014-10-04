@@ -23,7 +23,7 @@ namespace tskmProject.Models
         public int knowledgeID { get; set; }
         public string knowledgeTitle { get; set; }
         public string knowledgeDetail { get; set; }
-        public string knowledgeDate { get; set; }
+        public System.DateTime knowledgeDate { get; set; }
         public int catagoryID { get; set; }
         public int userID { get; set; }
     

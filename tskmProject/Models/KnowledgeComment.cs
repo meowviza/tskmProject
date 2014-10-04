@@ -15,9 +15,9 @@ namespace tskmProject.Models
     public partial class KnowledgeComment
     {
         public int commentID { get; set; }
-        public string commentDetail { get; set; }
-        public string commentDate { get; set; }
         public int knowledgeID { get; set; }
+        public string commentDetail { get; set; }
+        public System.DateTime commentDate { get; set; }
         public int userID { get; set; }
     
         public virtual Knowledgebase Knowledgebase { get; set; }

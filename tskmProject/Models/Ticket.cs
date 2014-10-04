@@ -23,7 +23,7 @@ namespace tskmProject.Models
         public int ticketID { get; set; }
         public string ticketTitle { get; set; }
         public string ticketDetail { get; set; }
-        public string ticketDate { get; set; }
+        public System.DateTime ticketDate { get; set; }
         public int catagoryID { get; set; }
         public int statusID { get; set; }
         public int userID { get; set; }

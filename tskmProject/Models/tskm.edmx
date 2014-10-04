@@ -4,400 +4,400 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="tskm.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Catagories">
-          <Key>
-            <PropertyRef Name="catagoryID" />
-          </Key>
-          <Property Name="catagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="catagoryName" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Departments">
-          <Key>
-            <PropertyRef Name="departmentID" />
-          </Key>
-          <Property Name="departmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="departmentName" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FileKnowledgebases">
-          <Key>
-            <PropertyRef Name="Files_fileID" />
-            <PropertyRef Name="Knowledgebases_knowledgeID" />
-          </Key>
-          <Property Name="Files_fileID" Type="int" Nullable="false" />
-          <Property Name="Knowledgebases_knowledgeID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Files">
-          <Key>
-            <PropertyRef Name="fileID" />
-          </Key>
-          <Property Name="fileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fileName" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Knowledgebases">
-          <Key>
-            <PropertyRef Name="knowledgeID" />
-          </Key>
-          <Property Name="knowledgeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="knowledgeTitle" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="knowledgeDetail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="knowledgeDate" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="catagoryID" Type="int" Nullable="false" />
-          <Property Name="userID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="KnowledgeComments">
-          <Key>
-            <PropertyRef Name="commentID" />
-          </Key>
-          <Property Name="commentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="commentDetail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="commentDate" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="knowledgeID" Type="int" Nullable="false" />
-          <Property Name="userID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="roleID" />
-          </Key>
-          <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Status">
-          <Key>
-            <PropertyRef Name="statusID" />
-          </Key>
-          <Property Name="statusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="statusName" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TicketFiles">
-          <Key>
-            <PropertyRef Name="Tickets_ticketID" />
-            <PropertyRef Name="Files_fileID" />
-          </Key>
-          <Property Name="Tickets_ticketID" Type="int" Nullable="false" />
-          <Property Name="Files_fileID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TicketReplies">
-          <Key>
-            <PropertyRef Name="replyID" />
-          </Key>
-          <Property Name="replyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="replyDetail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="replyDate" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ticketID" Type="int" Nullable="false" />
-          <Property Name="userID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tickets">
-          <Key>
-            <PropertyRef Name="ticketID" />
-          </Key>
-          <Property Name="ticketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ticketTitle" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ticketDetail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ticketDate" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="catagoryID" Type="int" Nullable="false" />
-          <Property Name="statusID" Type="int" Nullable="false" />
-          <Property Name="userID" Type="int" Nullable="false" />
-          <Property Name="Place" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Tel" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="userType" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserRoles">
-          <Key>
-            <PropertyRef Name="Users_userID" />
-            <PropertyRef Name="Roles_roleID" />
-          </Key>
-          <Property Name="Users_userID" Type="int" Nullable="false" />
-          <Property Name="Roles_roleID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="userID" />
-          </Key>
-          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userFname" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="userLname" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="userTel" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="userEmail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="userPosition" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="username" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="departmentID" Type="int" Nullable="false" />
-          <Property Name="userCode" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_CatagoryKnowledgebase">
-          <End Role="Catagories" Type="Self.Catagories" Multiplicity="1" />
-          <End Role="Knowledgebases" Type="Self.Knowledgebases" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catagories">
-              <PropertyRef Name="catagoryID" />
-            </Principal>
-            <Dependent Role="Knowledgebases">
-              <PropertyRef Name="catagoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CatagoryTicket">
-          <End Role="Catagories" Type="Self.Catagories" Multiplicity="1" />
-          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catagories">
-              <PropertyRef Name="catagoryID" />
-            </Principal>
-            <Dependent Role="Tickets">
-              <PropertyRef Name="catagoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DepartmentUser">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="departmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FileKnowledgebases_File">
-          <End Role="Files" Type="Self.Files" Multiplicity="1" />
-          <End Role="FileKnowledgebases" Type="Self.FileKnowledgebases" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Files">
-              <PropertyRef Name="fileID" />
-            </Principal>
-            <Dependent Role="FileKnowledgebases">
-              <PropertyRef Name="Files_fileID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FileKnowledgebases_Knowledgebase">
-          <End Role="Knowledgebases" Type="Self.Knowledgebases" Multiplicity="1" />
-          <End Role="FileKnowledgebases" Type="Self.FileKnowledgebases" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Knowledgebases">
-              <PropertyRef Name="knowledgeID" />
-            </Principal>
-            <Dependent Role="FileKnowledgebases">
-              <PropertyRef Name="Knowledgebases_knowledgeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_KnowledgebaseKnowledgeComment">
-          <End Role="Knowledgebases" Type="Self.Knowledgebases" Multiplicity="1" />
-          <End Role="KnowledgeComments" Type="Self.KnowledgeComments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Knowledgebases">
-              <PropertyRef Name="knowledgeID" />
-            </Principal>
-            <Dependent Role="KnowledgeComments">
-              <PropertyRef Name="knowledgeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StatusTicket">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="statusID" />
-            </Principal>
-            <Dependent Role="Tickets">
-              <PropertyRef Name="statusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TicketFiles_File">
-          <End Role="Files" Type="Self.Files" Multiplicity="1" />
-          <End Role="TicketFiles" Type="Self.TicketFiles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Files">
-              <PropertyRef Name="fileID" />
-            </Principal>
-            <Dependent Role="TicketFiles">
-              <PropertyRef Name="Files_fileID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TicketFiles_Ticket">
-          <End Role="Tickets" Type="Self.Tickets" Multiplicity="1" />
-          <End Role="TicketFiles" Type="Self.TicketFiles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tickets">
-              <PropertyRef Name="ticketID" />
-            </Principal>
-            <Dependent Role="TicketFiles">
-              <PropertyRef Name="Tickets_ticketID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TicketTicketReply">
-          <End Role="Tickets" Type="Self.Tickets" Multiplicity="1" />
-          <End Role="TicketReplies" Type="Self.TicketReplies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tickets">
-              <PropertyRef Name="ticketID" />
-            </Principal>
-            <Dependent Role="TicketReplies">
-              <PropertyRef Name="ticketID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserKnowledgebase">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Knowledgebases" Type="Self.Knowledgebases" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="Knowledgebases">
-              <PropertyRef Name="userID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserKnowledgeComment">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="KnowledgeComments" Type="Self.KnowledgeComments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="KnowledgeComments">
-              <PropertyRef Name="userID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserRoles_Role">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
-          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="roleID" />
-            </Principal>
-            <Dependent Role="UserRoles">
-              <PropertyRef Name="Roles_roleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserRoles_User">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="UserRoles">
-              <PropertyRef Name="Users_userID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserTicket">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="Tickets">
-              <PropertyRef Name="userID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserTicketReply">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="TicketReplies" Type="Self.TicketReplies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="TicketReplies">
-              <PropertyRef Name="userID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="tskmStoreContainer">
-          <EntitySet Name="Catagories" EntityType="Self.Catagories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FileKnowledgebases" EntityType="Self.FileKnowledgebases" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Knowledgebases" EntityType="Self.Knowledgebases" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="KnowledgeComments" EntityType="Self.KnowledgeComments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TicketFiles" EntityType="Self.TicketFiles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TicketReplies" EntityType="Self.TicketReplies" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CatagoryKnowledgebase" Association="Self.FK_CatagoryKnowledgebase">
-            <End Role="Catagories" EntitySet="Catagories" />
-            <End Role="Knowledgebases" EntitySet="Knowledgebases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CatagoryTicket" Association="Self.FK_CatagoryTicket">
-            <End Role="Catagories" EntitySet="Catagories" />
-            <End Role="Tickets" EntitySet="Tickets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DepartmentUser" Association="Self.FK_DepartmentUser">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FileKnowledgebases_File" Association="Self.FK_FileKnowledgebases_File">
-            <End Role="Files" EntitySet="Files" />
-            <End Role="FileKnowledgebases" EntitySet="FileKnowledgebases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FileKnowledgebases_Knowledgebase" Association="Self.FK_FileKnowledgebases_Knowledgebase">
-            <End Role="Knowledgebases" EntitySet="Knowledgebases" />
-            <End Role="FileKnowledgebases" EntitySet="FileKnowledgebases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_KnowledgebaseKnowledgeComment" Association="Self.FK_KnowledgebaseKnowledgeComment">
-            <End Role="Knowledgebases" EntitySet="Knowledgebases" />
-            <End Role="KnowledgeComments" EntitySet="KnowledgeComments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StatusTicket" Association="Self.FK_StatusTicket">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Tickets" EntitySet="Tickets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TicketFiles_File" Association="Self.FK_TicketFiles_File">
-            <End Role="Files" EntitySet="Files" />
-            <End Role="TicketFiles" EntitySet="TicketFiles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TicketFiles_Ticket" Association="Self.FK_TicketFiles_Ticket">
-            <End Role="Tickets" EntitySet="Tickets" />
-            <End Role="TicketFiles" EntitySet="TicketFiles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TicketTicketReply" Association="Self.FK_TicketTicketReply">
-            <End Role="Tickets" EntitySet="Tickets" />
-            <End Role="TicketReplies" EntitySet="TicketReplies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserKnowledgebase" Association="Self.FK_UserKnowledgebase">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Knowledgebases" EntitySet="Knowledgebases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserKnowledgeComment" Association="Self.FK_UserKnowledgeComment">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="KnowledgeComments" EntitySet="KnowledgeComments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRoles_Role" Association="Self.FK_UserRoles_Role">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="UserRoles" EntitySet="UserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRoles_User" Association="Self.FK_UserRoles_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserRoles" EntitySet="UserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserTicket" Association="Self.FK_UserTicket">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Tickets" EntitySet="Tickets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserTicketReply" Association="Self.FK_UserTicketReply">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="TicketReplies" EntitySet="TicketReplies" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="tskm.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="tskmStoreContainer">
+    <EntitySet Name="Departments" EntityType="tskm.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="tskm.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tickets" EntityType="tskm.Store.Tickets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Catagories" EntityType="tskm.Store.Catagories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Status" EntityType="tskm.Store.Status" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Knowledgebases" EntityType="tskm.Store.Knowledgebases" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketReplies" EntityType="tskm.Store.TicketReplies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KnowledgeComments" EntityType="tskm.Store.KnowledgeComments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Files" EntityType="tskm.Store.Files" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="tskm.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRoles" EntityType="tskm.Store.UserRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketFiles" EntityType="tskm.Store.TicketFiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FileKnowledgebases" EntityType="tskm.Store.FileKnowledgebases" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="DepartmentUser" Association="tskm.Store.DepartmentUser">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="CatagoryKnowledgebase" Association="tskm.Store.CatagoryKnowledgebase">
+      <End Role="Catagory" EntitySet="Catagories" />
+      <End Role="Knowledgebase" EntitySet="Knowledgebases" />
+    </AssociationSet>
+    <AssociationSet Name="CatagoryTicket" Association="tskm.Store.CatagoryTicket">
+      <End Role="Catagory" EntitySet="Catagories" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="StatusTicket" Association="tskm.Store.StatusTicket">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="TicketTicketReply" Association="tskm.Store.TicketTicketReply">
+      <End Role="Ticket" EntitySet="Tickets" />
+      <End Role="TicketReply" EntitySet="TicketReplies" />
+    </AssociationSet>
+    <AssociationSet Name="KnowledgebaseKnowledgeComment" Association="tskm.Store.KnowledgebaseKnowledgeComment">
+      <End Role="Knowledgebase" EntitySet="Knowledgebases" />
+      <End Role="KnowledgeComment" EntitySet="KnowledgeComments" />
+    </AssociationSet>
+    <AssociationSet Name="UserKnowledgeComment" Association="tskm.Store.UserKnowledgeComment">
+      <End Role="User" EntitySet="Users" />
+      <End Role="KnowledgeComment" EntitySet="KnowledgeComments" />
+    </AssociationSet>
+    <AssociationSet Name="UserTicket" Association="tskm.Store.UserTicket">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="UserTicketReply" Association="tskm.Store.UserTicketReply">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TicketReply" EntitySet="TicketReplies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_User" Association="tskm.Store.FK_UserRoles_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Role" Association="tskm.Store.FK_UserRoles_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketFiles_Ticket" Association="tskm.Store.FK_TicketFiles_Ticket">
+      <End Role="Ticket" EntitySet="Tickets" />
+      <End Role="TicketFiles" EntitySet="TicketFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketFiles_File" Association="tskm.Store.FK_TicketFiles_File">
+      <End Role="File" EntitySet="Files" />
+      <End Role="TicketFiles" EntitySet="TicketFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileKnowledgebases_File" Association="tskm.Store.FK_FileKnowledgebases_File">
+      <End Role="File" EntitySet="Files" />
+      <End Role="FileKnowledgebases" EntitySet="FileKnowledgebases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileKnowledgebases_Knowledgebase" Association="tskm.Store.FK_FileKnowledgebases_Knowledgebase">
+      <End Role="Knowledgebase" EntitySet="Knowledgebases" />
+      <End Role="FileKnowledgebases" EntitySet="FileKnowledgebases" />
+    </AssociationSet>
+    <AssociationSet Name="UserKnowledgebase" Association="tskm.Store.UserKnowledgebase">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Knowledgebase" EntitySet="Knowledgebases" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="departmentID" />
+    </Key>
+    <Property Name="departmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="departmentName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userFname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userLname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userTel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userPosition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="departmentID" Type="int" Nullable="false" />
+    <Property Name="userCode" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="ticketID" />
+    </Key>
+    <Property Name="ticketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ticketTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ticketDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ticketDate" Type="datetime" Nullable="false" />
+    <Property Name="catagoryID" Type="int" Nullable="false" />
+    <Property Name="statusID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="Place" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userType" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Catagories">
+    <Key>
+      <PropertyRef Name="catagoryID" />
+    </Key>
+    <Property Name="catagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="catagoryName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="statusName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Knowledgebases">
+    <Key>
+      <PropertyRef Name="knowledgeID" />
+    </Key>
+    <Property Name="knowledgeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="knowledgeTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="knowledgeDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="knowledgeDate" Type="datetime" Nullable="false" />
+    <Property Name="catagoryID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TicketReplies">
+    <Key>
+      <PropertyRef Name="replyID" />
+    </Key>
+    <Property Name="replyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="replyDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="replyDate" Type="datetime" Nullable="false" />
+    <Property Name="ticketID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KnowledgeComments">
+    <Key>
+      <PropertyRef Name="commentID" />
+    </Key>
+    <Property Name="commentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="knowledgeID" Type="int" Nullable="false" />
+    <Property Name="commentDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="commentDate" Type="datetime" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Files">
+    <Key>
+      <PropertyRef Name="fileID" />
+    </Key>
+    <Property Name="fileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fileName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="Users_userID" />
+      <PropertyRef Name="Roles_roleID" />
+    </Key>
+    <Property Name="Users_userID" Type="int" Nullable="false" />
+    <Property Name="Roles_roleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TicketFiles">
+    <Key>
+      <PropertyRef Name="Tickets_ticketID" />
+      <PropertyRef Name="Files_fileID" />
+    </Key>
+    <Property Name="Tickets_ticketID" Type="int" Nullable="false" />
+    <Property Name="Files_fileID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileKnowledgebases">
+    <Key>
+      <PropertyRef Name="Files_fileID" />
+      <PropertyRef Name="Knowledgebases_knowledgeID" />
+    </Key>
+    <Property Name="Files_fileID" Type="int" Nullable="false" />
+    <Property Name="Knowledgebases_knowledgeID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="DepartmentUser">
+    <End Role="Department" Type="tskm.Store.Departments" Multiplicity="1" />
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="departmentID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="departmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CatagoryKnowledgebase">
+    <End Role="Catagory" Type="tskm.Store.Catagories" Multiplicity="1" />
+    <End Role="Knowledgebase" Type="tskm.Store.Knowledgebases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catagory">
+        <PropertyRef Name="catagoryID" />
+      </Principal>
+      <Dependent Role="Knowledgebase">
+        <PropertyRef Name="catagoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CatagoryTicket">
+    <End Role="Catagory" Type="tskm.Store.Catagories" Multiplicity="1" />
+    <End Role="Ticket" Type="tskm.Store.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catagory">
+        <PropertyRef Name="catagoryID" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="catagoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StatusTicket">
+    <End Role="Status" Type="tskm.Store.Status" Multiplicity="1" />
+    <End Role="Ticket" Type="tskm.Store.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="statusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TicketTicketReply">
+    <End Role="Ticket" Type="tskm.Store.Tickets" Multiplicity="1" />
+    <End Role="TicketReply" Type="tskm.Store.TicketReplies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="ticketID" />
+      </Principal>
+      <Dependent Role="TicketReply">
+        <PropertyRef Name="ticketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KnowledgebaseKnowledgeComment">
+    <End Role="Knowledgebase" Type="tskm.Store.Knowledgebases" Multiplicity="1" />
+    <End Role="KnowledgeComment" Type="tskm.Store.KnowledgeComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Knowledgebase">
+        <PropertyRef Name="knowledgeID" />
+      </Principal>
+      <Dependent Role="KnowledgeComment">
+        <PropertyRef Name="knowledgeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserKnowledgeComment">
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="1" />
+    <End Role="KnowledgeComment" Type="tskm.Store.KnowledgeComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="KnowledgeComment">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserTicket">
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="1" />
+    <End Role="Ticket" Type="tskm.Store.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserTicketReply">
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="1" />
+    <End Role="TicketReply" Type="tskm.Store.TicketReplies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="TicketReply">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserKnowledgebase">
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="1" />
+    <End Role="Knowledgebase" Type="tskm.Store.Knowledgebases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Knowledgebase">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_User">
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="1" />
+    <End Role="UserRoles" Type="tskm.Store.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="Users_userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Role">
+    <End Role="UserRoles" Type="tskm.Store.UserRoles" Multiplicity="*" />
+    <End Role="Role" Type="tskm.Store.Roles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="Roles_roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketFiles_Ticket">
+    <End Role="Ticket" Type="tskm.Store.Tickets" Multiplicity="1" />
+    <End Role="TicketFiles" Type="tskm.Store.TicketFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="ticketID" />
+      </Principal>
+      <Dependent Role="TicketFiles">
+        <PropertyRef Name="Tickets_ticketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketFiles_File">
+    <End Role="TicketFiles" Type="tskm.Store.TicketFiles" Multiplicity="*" />
+    <End Role="File" Type="tskm.Store.Files" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="fileID" />
+      </Principal>
+      <Dependent Role="TicketFiles">
+        <PropertyRef Name="Files_fileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FileKnowledgebases_File">
+    <End Role="File" Type="tskm.Store.Files" Multiplicity="1" />
+    <End Role="FileKnowledgebases" Type="tskm.Store.FileKnowledgebases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="fileID" />
+      </Principal>
+      <Dependent Role="FileKnowledgebases">
+        <PropertyRef Name="Files_fileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FileKnowledgebases_Knowledgebase">
+    <End Role="FileKnowledgebases" Type="tskm.Store.FileKnowledgebases" Multiplicity="*" />
+    <End Role="Knowledgebase" Type="tskm.Store.Knowledgebases" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Knowledgebase">
+        <PropertyRef Name="knowledgeID" />
+      </Principal>
+      <Dependent Role="FileKnowledgebases">
+        <PropertyRef Name="Knowledgebases_knowledgeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="tskm" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -501,7 +501,7 @@
           <Property Name="ticketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ticketTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ticketDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ticketDate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ticketDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Catagory" Relationship="tskm.CatagoryTicket" FromRole="Ticket" ToRole="Catagory" />
           <Property Name="catagoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Status" Relationship="tskm.StatusTicket" FromRole="Ticket" ToRole="Status" />
@@ -538,7 +538,7 @@
           <Property Name="knowledgeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="knowledgeTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="knowledgeDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="knowledgeDate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="knowledgeDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Catagory" Relationship="tskm.CatagoryKnowledgebase" FromRole="Knowledgebase" ToRole="Catagory" />
           <Property Name="catagoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="KnowledgeComment" Relationship="tskm.KnowledgebaseKnowledgeComment" FromRole="Knowledgebase" ToRole="KnowledgeComment" />
@@ -552,7 +552,7 @@
           </Key>
           <Property Name="replyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="replyDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="replyDate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="replyDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Ticket" Relationship="tskm.TicketTicketReply" FromRole="TicketReply" ToRole="Ticket" />
           <Property Name="ticketID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="tskm.UserTicketReply" FromRole="TicketReply" ToRole="User" />
@@ -563,10 +563,10 @@
             <PropertyRef Name="commentID" />
           </Key>
           <Property Name="commentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="commentDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="commentDate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Knowledgebase" Relationship="tskm.KnowledgebaseKnowledgeComment" FromRole="KnowledgeComment" ToRole="Knowledgebase" />
           <Property Name="knowledgeID" Type="Int32" Nullable="false" />
+          <Property Name="commentDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="commentDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Knowledgebase" Relationship="tskm.KnowledgebaseKnowledgeComment" FromRole="KnowledgeComment" ToRole="Knowledgebase" />
           <NavigationProperty Name="User" Relationship="tskm.UserKnowledgeComment" FromRole="KnowledgeComment" ToRole="User" />
           <Property Name="userID" Type="Int32" Nullable="false" />
         </EntityType>
@@ -809,9 +809,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(tskm.KnowledgeComment)">
         <MappingFragment StoreEntitySet="KnowledgeComments">
           <ScalarProperty Name="commentID" ColumnName="commentID" />
+          <ScalarProperty Name="knowledgeID" ColumnName="knowledgeID" />
           <ScalarProperty Name="commentDetail" ColumnName="commentDetail" />
           <ScalarProperty Name="commentDate" ColumnName="commentDate" />
-          <ScalarProperty Name="knowledgeID" ColumnName="knowledgeID" />
           <ScalarProperty Name="userID" ColumnName="userID" />
         </MappingFragment>
       </EntityTypeMapping>

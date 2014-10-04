@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/27/2014 16:40:02
--- Generated from EDMX file: C:\Users\ViZa\Documents\Visual Studio 2013\Projects\tskmProject\tskmProject\Models\tskm.edmx
+-- Date Created: 10/04/2014 12:53:08
+-- Generated from EDMX file: C:\Users\Thanasarn\Source\Repos\tskmProject\tskmProject\Models\tskm.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,47 +17,26 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_DepartmentUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_DepartmentUser];
+GO
 IF OBJECT_ID(N'[dbo].[FK_CatagoryKnowledgebase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Knowledgebases] DROP CONSTRAINT [FK_CatagoryKnowledgebase];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CatagoryTicket]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_CatagoryTicket];
 GO
-IF OBJECT_ID(N'[dbo].[FK_DepartmentUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_DepartmentUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_File]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_File];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_Knowledgebase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_Knowledgebase];
-GO
-IF OBJECT_ID(N'[dbo].[FK_KnowledgebaseKnowledgeComment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[KnowledgeComments] DROP CONSTRAINT [FK_KnowledgebaseKnowledgeComment];
-GO
 IF OBJECT_ID(N'[dbo].[FK_StatusTicket]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_StatusTicket];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketFiles_File]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_File];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketFiles_Ticket]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_Ticket];
 GO
 IF OBJECT_ID(N'[dbo].[FK_TicketTicketReply]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TicketReplies] DROP CONSTRAINT [FK_TicketTicketReply];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserKnowledgebase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Knowledgebases] DROP CONSTRAINT [FK_UserKnowledgebase];
+IF OBJECT_ID(N'[dbo].[FK_KnowledgebaseKnowledgeComment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KnowledgeComments] DROP CONSTRAINT [FK_KnowledgebaseKnowledgeComment];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserKnowledgeComment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[KnowledgeComments] DROP CONSTRAINT [FK_UserKnowledgeComment];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserRoles_Role]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_Role];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserRoles_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_User];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserTicket]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_UserTicket];
@@ -65,49 +44,70 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserTicketReply]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TicketReplies] DROP CONSTRAINT [FK_UserTicketReply];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserRoles_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserRoles_Role]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_Role];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketFiles_Ticket]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_Ticket];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketFiles_File]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_File];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_File]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_File];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_Knowledgebase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_Knowledgebase];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserKnowledgebase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Knowledgebases] DROP CONSTRAINT [FK_UserKnowledgebase];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Catagories]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Catagories];
-GO
 IF OBJECT_ID(N'[dbo].[Departments]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Departments];
 GO
-IF OBJECT_ID(N'[dbo].[FileKnowledgebases]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FileKnowledgebases];
-GO
-IF OBJECT_ID(N'[dbo].[Files]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Files];
-GO
-IF OBJECT_ID(N'[dbo].[Knowledgebases]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Knowledgebases];
-GO
-IF OBJECT_ID(N'[dbo].[KnowledgeComments]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[KnowledgeComments];
-GO
-IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Roles];
-GO
-IF OBJECT_ID(N'[dbo].[Status]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Status];
-GO
-IF OBJECT_ID(N'[dbo].[TicketFiles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[TicketFiles];
-GO
-IF OBJECT_ID(N'[dbo].[TicketReplies]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[TicketReplies];
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
 GO
 IF OBJECT_ID(N'[dbo].[Tickets]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Tickets];
 GO
+IF OBJECT_ID(N'[dbo].[Catagories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Catagories];
+GO
+IF OBJECT_ID(N'[dbo].[Status]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Status];
+GO
+IF OBJECT_ID(N'[dbo].[Knowledgebases]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Knowledgebases];
+GO
+IF OBJECT_ID(N'[dbo].[TicketReplies]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TicketReplies];
+GO
+IF OBJECT_ID(N'[dbo].[KnowledgeComments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KnowledgeComments];
+GO
+IF OBJECT_ID(N'[dbo].[Files]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Files];
+GO
+IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Roles];
+GO
 IF OBJECT_ID(N'[dbo].[UserRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserRoles];
 GO
-IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users];
+IF OBJECT_ID(N'[dbo].[TicketFiles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TicketFiles];
+GO
+IF OBJECT_ID(N'[dbo].[FileKnowledgebases]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FileKnowledgebases];
 GO
 
 -- --------------------------------------------------
@@ -141,7 +141,7 @@ CREATE TABLE [dbo].[Tickets] (
     [ticketID] int IDENTITY(1,1) NOT NULL,
     [ticketTitle] nvarchar(max)  NOT NULL,
     [ticketDetail] nvarchar(max)  NOT NULL,
-    [ticketDate] nvarchar(max)  NOT NULL,
+    [ticketDate] datetime  NOT NULL,
     [catagoryID] int  NOT NULL,
     [statusID] int  NOT NULL,
     [userID] int  NOT NULL,
@@ -170,7 +170,7 @@ CREATE TABLE [dbo].[Knowledgebases] (
     [knowledgeID] int IDENTITY(1,1) NOT NULL,
     [knowledgeTitle] nvarchar(max)  NOT NULL,
     [knowledgeDetail] nvarchar(max)  NOT NULL,
-    [knowledgeDate] nvarchar(max)  NOT NULL,
+    [knowledgeDate] datetime  NOT NULL,
     [catagoryID] int  NOT NULL,
     [userID] int  NOT NULL
 );
@@ -180,7 +180,7 @@ GO
 CREATE TABLE [dbo].[TicketReplies] (
     [replyID] int IDENTITY(1,1) NOT NULL,
     [replyDetail] nvarchar(max)  NOT NULL,
-    [replyDate] nvarchar(max)  NOT NULL,
+    [replyDate] datetime  NOT NULL,
     [ticketID] int  NOT NULL,
     [userID] int  NOT NULL
 );
@@ -189,9 +189,9 @@ GO
 -- Creating table 'KnowledgeComments'
 CREATE TABLE [dbo].[KnowledgeComments] (
     [commentID] int IDENTITY(1,1) NOT NULL,
-    [commentDetail] nvarchar(max)  NOT NULL,
-    [commentDate] nvarchar(max)  NOT NULL,
     [knowledgeID] int  NOT NULL,
+    [commentDetail] nvarchar(max)  NOT NULL,
+    [commentDate] datetime  NOT NULL,
     [userID] int  NOT NULL
 );
 GO

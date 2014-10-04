@@ -40,7 +40,5 @@ namespace tskmProject.Models
         public virtual ICollection<TicketReply> TicketReply { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Knowledgebase> Knowledgebases { get; set; }
-
-        public List<int> SelectedRoleIDs { get; set; }
     }
 }

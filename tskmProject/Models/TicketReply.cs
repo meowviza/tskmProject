@@ -16,7 +16,7 @@ namespace tskmProject.Models
     {
         public int replyID { get; set; }
         public string replyDetail { get; set; }
-        public string replyDate { get; set; }
+        public System.DateTime replyDate { get; set; }
         public int ticketID { get; set; }
         public int userID { get; set; }
     
