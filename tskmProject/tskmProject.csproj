@@ -182,6 +182,9 @@
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>tskm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TicketHistory.cs">
+      <DependentUpon>tskm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TicketReply.cs">
       <DependentUpon>tskm.tt</DependentUpon>
     </Compile>

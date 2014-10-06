@@ -16,6 +16,7 @@
     <EntitySet Name="KnowledgeComments" EntityType="tskm.Store.KnowledgeComments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Files" EntityType="tskm.Store.Files" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="tskm.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketHistories" EntityType="tskm.Store.TicketHistories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserRoles" EntityType="tskm.Store.UserRoles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TicketFiles" EntityType="tskm.Store.TicketFiles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FileKnowledgebases" EntityType="tskm.Store.FileKnowledgebases" store:Type="Tables" Schema="dbo" />
@@ -83,6 +84,18 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Knowledgebase" EntitySet="Knowledgebases" />
     </AssociationSet>
+    <AssociationSet Name="TicketTicketHistory" Association="tskm.Store.TicketTicketHistory">
+      <End Role="Ticket" EntitySet="Tickets" />
+      <End Role="TicketHistory" EntitySet="TicketHistories" />
+    </AssociationSet>
+    <AssociationSet Name="TicketHistoryOldAssignee" Association="tskm.Store.TicketHistoryOldAssignee">
+      <End Role="TicketHistory" EntitySet="TicketHistories" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="TicketUserAssignee" Association="tskm.Store.TicketUserAssignee">
+      <End Role="Ticket" EntitySet="Tickets" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Departments">
     <Key>
@@ -120,6 +133,7 @@
     <Property Name="Place" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Tel" Type="nvarchar(max)" Nullable="false" />
     <Property Name="userType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AssigneeID" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Catagories">
     <Key>
@@ -180,6 +194,15 @@
     <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TicketHistories">
+    <Key>
+      <PropertyRef Name="TicketID" />
+      <PropertyRef Name="CreatedDateTime" />
+    </Key>
+    <Property Name="TicketID" Type="int" Nullable="false" />
+    <Property Name="OldAssigneeID" Type="int" Nullable="true" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="UserRoles">
     <Key>
@@ -325,6 +348,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="TicketTicketHistory">
+    <End Role="Ticket" Type="tskm.Store.Tickets" Multiplicity="1" />
+    <End Role="TicketHistory" Type="tskm.Store.TicketHistories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="ticketID" />
+      </Principal>
+      <Dependent Role="TicketHistory">
+        <PropertyRef Name="TicketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TicketHistoryOldAssignee">
+    <End Role="TicketHistory" Type="tskm.Store.TicketHistories" Multiplicity="*" />
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="TicketHistory">
+        <PropertyRef Name="OldAssigneeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TicketUserAssignee">
+    <End Role="Ticket" Type="tskm.Store.Tickets" Multiplicity="*" />
+    <End Role="User" Type="tskm.Store.Users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="AssigneeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserRoles_User">
     <End Role="User" Type="tskm.Store.Users" Multiplicity="1" />
     <End Role="UserRoles" Type="tskm.Store.UserRoles" Multiplicity="*" />
@@ -464,6 +523,19 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Knowledgebase" EntitySet="Knowledgebases" />
           </AssociationSet>
+          <EntitySet Name="TicketHistories" EntityType="tskm.TicketHistory" />
+          <AssociationSet Name="TicketTicketHistory" Association="tskm.TicketTicketHistory">
+            <End Role="Ticket" EntitySet="Tickets" />
+            <End Role="TicketHistory" EntitySet="TicketHistories" />
+          </AssociationSet>
+          <AssociationSet Name="TicketHistoryOldAssignee" Association="tskm.TicketHistoryOldAssignee">
+            <End Role="TicketHistory" EntitySet="TicketHistories" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="TicketUserAssignee" Association="tskm.TicketUserAssignee">
+            <End Role="Ticket" EntitySet="Tickets" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Department">
           <Key>
@@ -493,6 +565,7 @@
           <NavigationProperty Name="Roles" Relationship="tskm.UserRoles" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Knowledgebases" Relationship="tskm.UserKnowledgebase" FromRole="User" ToRole="Knowledgebase" />
           <Property Name="userCode" Type="String" Nullable="false" Unicode="true" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TicketAssignment" Relationship="tskm.TicketUserAssignee" FromRole="User" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -513,6 +586,14 @@
           <Property Name="Tel" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Files" Relationship="tskm.TicketFiles" FromRole="Ticket" ToRole="File" />
           <Property Name="userType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TicketHistories" Relationship="tskm.TicketTicketHistory" FromRole="Ticket" ToRole="TicketHistory" >
+            <Documentation>
+              <Summary>Log for assignees (Old &amp; New Assignee)</Summary>
+              <LongDescription>Collection of ticket assignment history</LongDescription>
+            </Documentation>
+          </NavigationProperty>
+          <Property Name="AssigneeID" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Assignee" Relationship="tskm.TicketUserAssignee" FromRole="Ticket" ToRole="User" />
         </EntityType>
         <EntityType Name="Catagory">
           <Key>
@@ -720,6 +801,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TicketHistory" >
+          <Key>
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="CreatedDateTime" />
+          </Key>
+          <NavigationProperty Name="Ticket" Relationship="tskm.TicketTicketHistory" FromRole="TicketHistory" ToRole="Ticket" />
+          <Property Name="TicketID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OldAssignee" Relationship="tskm.TicketHistoryOldAssignee" FromRole="TicketHistory" ToRole="User" />
+          <Property Name="OldAssigneeID" Type="Int32" Nullable="true" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="TicketTicketHistory">
+          <End Type="tskm.Ticket" Role="Ticket" Multiplicity="1" />
+          <End Type="tskm.TicketHistory" Role="TicketHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="ticketID" />
+            </Principal>
+            <Dependent Role="TicketHistory">
+              <PropertyRef Name="TicketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TicketHistoryOldAssignee">
+          <End Type="tskm.TicketHistory" Role="TicketHistory" Multiplicity="*" />
+          <End Type="tskm.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="TicketHistory">
+              <PropertyRef Name="OldAssigneeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TicketUserAssignee">
+          <End Type="tskm.Ticket" Role="Ticket" Multiplicity="*" />
+          <End Type="tskm.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="AssigneeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -763,6 +891,7 @@
           <ScalarProperty Name="Place" ColumnName="Place" />
           <ScalarProperty Name="Tel" ColumnName="Tel" />
           <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="AssigneeID" ColumnName="AssigneeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -830,6 +959,15 @@
           <ScalarProperty Name="roleID" ColumnName="roleID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(tskm.TicketHistory)">
+        <MappingFragment StoreEntitySet="TicketHistories">
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="OldAssigneeID" ColumnName="OldAssigneeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

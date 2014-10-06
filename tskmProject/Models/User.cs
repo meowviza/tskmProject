@@ -21,6 +21,7 @@ namespace tskmProject.Models
             this.TicketReply = new HashSet<TicketReply>();
             this.Roles = new HashSet<Role>();
             this.Knowledgebases = new HashSet<Knowledgebase>();
+            this.TicketAssignment = new HashSet<Ticket>();
         }
     
         public int userID { get; set; }
@@ -40,5 +41,6 @@ namespace tskmProject.Models
         public virtual ICollection<TicketReply> TicketReply { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Knowledgebase> Knowledgebases { get; set; }
+        public virtual ICollection<Ticket> TicketAssignment { get; set; }
     }
 }

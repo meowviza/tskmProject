@@ -35,5 +35,6 @@ namespace tskmProject.Models
         public virtual DbSet<KnowledgeComment> KnowledgeComments { get; set; }
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<TicketHistory> TicketHistories { get; set; }
     }
 }

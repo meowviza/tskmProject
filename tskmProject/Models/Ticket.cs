@@ -18,6 +18,7 @@ namespace tskmProject.Models
         {
             this.TicketReply = new HashSet<TicketReply>();
             this.Files = new HashSet<File>();
+            this.TicketHistories = new HashSet<TicketHistory>();
         }
     
         public int ticketID { get; set; }
@@ -30,11 +31,14 @@ namespace tskmProject.Models
         public string Place { get; set; }
         public string Tel { get; set; }
         public string userType { get; set; }
+        public Nullable<int> AssigneeID { get; set; }
     
         public virtual Catagory Catagory { get; set; }
         public virtual Status Status { get; set; }
         public virtual ICollection<TicketReply> TicketReply { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<File> Files { get; set; }
+        public virtual ICollection<TicketHistory> TicketHistories { get; set; }
+        public virtual User Assignee { get; set; }
     }
 }

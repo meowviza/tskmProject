@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/04/2014 12:53:08
+-- Date Created: 10/06/2014 20:08:26
 -- Generated from EDMX file: C:\Users\Thanasarn\Source\Repos\tskmProject\tskmProject\Models\tskm.edmx
 -- --------------------------------------------------
 
@@ -147,7 +147,8 @@ CREATE TABLE [dbo].[Tickets] (
     [userID] int  NOT NULL,
     [Place] nvarchar(max)  NOT NULL,
     [Tel] nvarchar(max)  NOT NULL,
-    [userType] nvarchar(max)  NOT NULL
+    [userType] nvarchar(max)  NOT NULL,
+    [AssigneeID] int  NULL
 );
 GO
 
@@ -208,6 +209,14 @@ CREATE TABLE [dbo].[Roles] (
     [roleID] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'TicketHistories'
+CREATE TABLE [dbo].[TicketHistories] (
+    [TicketID] int  NOT NULL,
+    [OldAssigneeID] int  NULL,
+    [CreatedDateTime] datetime  NOT NULL
 );
 GO
 
@@ -294,6 +303,12 @@ GO
 ALTER TABLE [dbo].[Roles]
 ADD CONSTRAINT [PK_Roles]
     PRIMARY KEY CLUSTERED ([roleID] ASC);
+GO
+
+-- Creating primary key on [TicketID], [CreatedDateTime] in table 'TicketHistories'
+ALTER TABLE [dbo].[TicketHistories]
+ADD CONSTRAINT [PK_TicketHistories]
+    PRIMARY KEY CLUSTERED ([TicketID], [CreatedDateTime] ASC);
 GO
 
 -- Creating primary key on [Users_userID], [Roles_roleID] in table 'UserRoles'
@@ -538,6 +553,45 @@ GO
 CREATE INDEX [IX_FK_UserKnowledgebase]
 ON [dbo].[Knowledgebases]
     ([userID]);
+GO
+
+-- Creating foreign key on [TicketID] in table 'TicketHistories'
+ALTER TABLE [dbo].[TicketHistories]
+ADD CONSTRAINT [FK_TicketTicketHistory]
+    FOREIGN KEY ([TicketID])
+    REFERENCES [dbo].[Tickets]
+        ([ticketID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [OldAssigneeID] in table 'TicketHistories'
+ALTER TABLE [dbo].[TicketHistories]
+ADD CONSTRAINT [FK_TicketHistoryOldAssignee]
+    FOREIGN KEY ([OldAssigneeID])
+    REFERENCES [dbo].[Users]
+        ([userID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TicketHistoryOldAssignee'
+CREATE INDEX [IX_FK_TicketHistoryOldAssignee]
+ON [dbo].[TicketHistories]
+    ([OldAssigneeID]);
+GO
+
+-- Creating foreign key on [AssigneeID] in table 'Tickets'
+ALTER TABLE [dbo].[Tickets]
+ADD CONSTRAINT [FK_TicketUserAssignee]
+    FOREIGN KEY ([AssigneeID])
+    REFERENCES [dbo].[Users]
+        ([userID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TicketUserAssignee'
+CREATE INDEX [IX_FK_TicketUserAssignee]
+ON [dbo].[Tickets]
+    ([AssigneeID]);
 GO
 
 -- --------------------------------------------------
