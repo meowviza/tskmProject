@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/06/2014 20:08:26
+-- Date Created: 10/06/2014 21:38:11
 -- Generated from EDMX file: C:\Users\Thanasarn\Source\Repos\tskmProject\tskmProject\Models\tskm.edmx
 -- --------------------------------------------------
 
@@ -65,6 +65,18 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserKnowledgebase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Knowledgebases] DROP CONSTRAINT [FK_UserKnowledgebase];
 GO
+IF OBJECT_ID(N'[dbo].[FK_TicketTicketHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketTicketHistory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketHistoryOldAssignee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryOldAssignee];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketUserAssignee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_TicketUserAssignee];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketHistoryNewAssignee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryNewAssignee];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -99,6 +111,9 @@ IF OBJECT_ID(N'[dbo].[Files]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Roles];
+GO
+IF OBJECT_ID(N'[dbo].[TicketHistories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TicketHistories];
 GO
 IF OBJECT_ID(N'[dbo].[UserRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserRoles];
@@ -147,7 +162,6 @@ CREATE TABLE [dbo].[Tickets] (
     [userID] int  NOT NULL,
     [Place] nvarchar(max)  NOT NULL,
     [Tel] nvarchar(max)  NOT NULL,
-    [userType] nvarchar(max)  NOT NULL,
     [AssigneeID] int  NULL
 );
 GO
@@ -216,6 +230,7 @@ GO
 CREATE TABLE [dbo].[TicketHistories] (
     [TicketID] int  NOT NULL,
     [OldAssigneeID] int  NULL,
+    [NewAssigneeID] int  NULL,
     [CreatedDateTime] datetime  NOT NULL
 );
 GO
@@ -592,6 +607,21 @@ GO
 CREATE INDEX [IX_FK_TicketUserAssignee]
 ON [dbo].[Tickets]
     ([AssigneeID]);
+GO
+
+-- Creating foreign key on [NewAssigneeID] in table 'TicketHistories'
+ALTER TABLE [dbo].[TicketHistories]
+ADD CONSTRAINT [FK_TicketHistoryNewAssignee]
+    FOREIGN KEY ([NewAssigneeID])
+    REFERENCES [dbo].[Users]
+        ([userID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TicketHistoryNewAssignee'
+CREATE INDEX [IX_FK_TicketHistoryNewAssignee]
+ON [dbo].[TicketHistories]
+    ([NewAssigneeID]);
 GO
 
 -- --------------------------------------------------

@@ -30,7 +30,6 @@ namespace tskmProject.Models
         public int userID { get; set; }
         public string Place { get; set; }
         public string Tel { get; set; }
-        public string userType { get; set; }
         public Nullable<int> AssigneeID { get; set; }
     
         public virtual Catagory Catagory { get; set; }

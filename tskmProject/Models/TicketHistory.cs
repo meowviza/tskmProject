@@ -16,9 +16,11 @@ namespace tskmProject.Models
     {
         public int TicketID { get; set; }
         public Nullable<int> OldAssigneeID { get; set; }
+        public Nullable<int> NewAssigneeID { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
     
         public virtual Ticket Ticket { get; set; }
         public virtual User OldAssignee { get; set; }
+        public virtual User NewAssignee { get; set; }
     }
 }
