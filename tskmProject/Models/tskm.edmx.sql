@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/06/2014 21:38:11
+-- Date Created: 10/07/2014 22:47:30
 -- Generated from EDMX file: C:\Users\Thanasarn\Source\Repos\tskmProject\tskmProject\Models\tskm.edmx
 -- --------------------------------------------------
 
@@ -231,6 +231,9 @@ CREATE TABLE [dbo].[TicketHistories] (
     [TicketID] int  NOT NULL,
     [OldAssigneeID] int  NULL,
     [NewAssigneeID] int  NULL,
+    [Comment] nvarchar(max)  NOT NULL,
+    [CreatedByUserID] nvarchar(max)  NOT NULL,
+    [CreatedByID] int  NOT NULL,
     [CreatedDateTime] datetime  NOT NULL
 );
 GO
@@ -622,6 +625,21 @@ GO
 CREATE INDEX [IX_FK_TicketHistoryNewAssignee]
 ON [dbo].[TicketHistories]
     ([NewAssigneeID]);
+GO
+
+-- Creating foreign key on [CreatedByID] in table 'TicketHistories'
+ALTER TABLE [dbo].[TicketHistories]
+ADD CONSTRAINT [FK_TicketHistoryCreatedByUser]
+    FOREIGN KEY ([CreatedByID])
+    REFERENCES [dbo].[Users]
+        ([userID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TicketHistoryCreatedByUser'
+CREATE INDEX [IX_FK_TicketHistoryCreatedByUser]
+ON [dbo].[TicketHistories]
+    ([CreatedByID]);
 GO
 
 -- --------------------------------------------------

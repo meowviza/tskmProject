@@ -34,6 +34,7 @@
         <AssociationConnector Association="tskm.TicketHistoryOldAssignee" />
         <AssociationConnector Association="tskm.TicketUserAssignee" />
         <AssociationConnector Association="tskm.TicketHistoryNewAssignee" />
+        <AssociationConnector Association="tskm.TicketHistoryCreatedByUser" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
