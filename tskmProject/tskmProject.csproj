@@ -152,7 +152,6 @@
     <Compile Include="Controllers\CatagoriesController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\KnowledgebasesController.cs" />
-    <Compile Include="Controllers\KnowledgeCommentsController.cs" />
     <Compile Include="Controllers\TicketRepliesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -412,11 +411,6 @@
     <Content Include="Views\TicketReplies\Details.cshtml" />
     <Content Include="Views\TicketReplies\Edit.cshtml" />
     <Content Include="Views\TicketReplies\Index.cshtml" />
-    <Content Include="Views\KnowledgeComments\Create.cshtml" />
-    <Content Include="Views\KnowledgeComments\Delete.cshtml" />
-    <Content Include="Views\KnowledgeComments\Details.cshtml" />
-    <Content Include="Views\KnowledgeComments\Edit.cshtml" />
-    <Content Include="Views\KnowledgeComments\Index.cshtml" />
     <Content Include="Views\Files\Create.cshtml" />
     <Content Include="Views\Files\Delete.cshtml" />
     <Content Include="Views\Files\Details.cshtml" />
