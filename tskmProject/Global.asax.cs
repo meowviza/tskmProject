@@ -88,6 +88,29 @@ namespace tskmProject
                     user.Roles.Add(db.Roles.First());
                 }
 
+                if (!db.Status.Any())
+                {
+                    db.Status.Add(new Status
+                    {
+                        statusName = "Opened"
+                    });
+
+                    db.Status.Add(new Status
+                    {
+                        statusName = "In Progress"
+                    });
+
+                    db.Status.Add(new Status
+                    {
+                        statusName = "Waiting for closing"
+                    });
+
+                    db.Status.Add(new Status
+                    {
+                        statusName = "Closed"
+                    });
+                }
+
                 db.SaveChanges();
             }
         }
