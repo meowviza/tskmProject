@@ -11,6 +11,7 @@ using System.Web.Security;
 
 namespace tskmProject.Controllers
 {
+    [Authorize]
     public class TicketsController : Controller
     {
         private tskmContainer db = new tskmContainer();
@@ -72,18 +73,19 @@ namespace tskmProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ticketID,ticketTitle,contractChannel,ticketDetail,ticketDate,catagoryID,statusID,userID")] Ticket ticket)
+        public ActionResult Create(Ticket ticket)
         {
             if (ModelState.IsValid)
             {
-                int? userID = CurrentUser.GetUserID();
+                int userID = CurrentUser.GetUserID().Value;
 
-                if (userID != null)
-                {
-                    ticket.userID = userID.Value;
-                    db.Tickets.Add(ticket); ;
-                    db.SaveChanges();
-                }
+                ticket.userID = userID;
+                ticket.ticketDate = DateTime.Now;
+                ticket.Status = db.Status.Single(x => x.statusName == "Opened");
+                db.Tickets.Add(ticket);
+                db.SaveChanges();
+
+
                 return RedirectToAction("Index");
             }
 
