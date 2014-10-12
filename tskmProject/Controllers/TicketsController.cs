@@ -171,5 +171,14 @@ namespace tskmProject.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Assign()
+        {
+            return View();
+        }
+        public ActionResult Update()
+        {
+            return View();
+        }
+
     }
 }

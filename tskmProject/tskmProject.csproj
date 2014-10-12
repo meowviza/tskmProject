@@ -149,10 +149,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UserHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CatagoriesController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\KnowledgebasesController.cs" />
-    <Compile Include="Controllers\TicketRepliesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -406,16 +404,6 @@
     <Content Include="Views\Knowledgebases\Details.cshtml" />
     <Content Include="Views\Knowledgebases\Edit.cshtml" />
     <Content Include="Views\Knowledgebases\Index.cshtml" />
-    <Content Include="Views\TicketReplies\Create.cshtml" />
-    <Content Include="Views\TicketReplies\Delete.cshtml" />
-    <Content Include="Views\TicketReplies\Details.cshtml" />
-    <Content Include="Views\TicketReplies\Edit.cshtml" />
-    <Content Include="Views\TicketReplies\Index.cshtml" />
-    <Content Include="Views\Files\Create.cshtml" />
-    <Content Include="Views\Files\Delete.cshtml" />
-    <Content Include="Views\Files\Details.cshtml" />
-    <Content Include="Views\Files\Edit.cshtml" />
-    <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -425,6 +413,7 @@
     <Content Include="Views\Account\_ITMenu.cshtml" />
     <Content Include="Views\Account\_OtherMenu.cshtml" />
     <Content Include="Views\Knowledgebases\Comment.cshtml" />
+    <Content Include="Views\Tickets\Assign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
