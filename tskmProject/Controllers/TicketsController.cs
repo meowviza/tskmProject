@@ -174,10 +174,34 @@ namespace tskmProject.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult Assign()
+        public ActionResult Assign(int id)
         {
-            ViewBag.userID = new SelectList(db.Users, "userID", "userFname");
-            return View();
+            ViewBag.NewAssigneeID = new SelectList(db.Users, "userID", "userFname");
+            Ticket ticket = db.Tickets.Find(id);
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new TicketHistory{
+                TicketID = ticket.ticketID,
+                OldAssigneeID = ticket.AssigneeID,
+            });
+        }
+
+        [HttpPost]
+        public ActionResult Assign(TicketHistory ticketHistory)
+        {
+            ticketHistory.CreatedByID = CurrentUser.GetUserID().Value;
+            ticketHistory.CreatedDateTime = DateTime.Now;
+            db.TicketHistories.Add(ticketHistory);
+
+            Ticket ticket = db.Tickets.Find(ticketHistory.TicketID);
+            ticket.AssigneeID = ticketHistory.NewAssigneeID;
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = ticketHistory.TicketID });
         }
 
         [HttpPost]

@@ -1,37 +1,37 @@
-﻿@model tskmProject.Models.Ticket
-
+﻿@model tskmProject.Models.TicketHistory
 @{
     ViewBag.Title = "มอบหมาย";
 }
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Assign", "Tickets", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model => model.TicketID)
+    @Html.HiddenFor(model => model.OldAssigneeID)
     <div class="row">
         <h3 class="page-header">ใบงาน</h3>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <br />
             <div class="form-group">
-                @Html.LabelFor(m => m.userID, "มอบหมาย", new { @class = "col-md-2 control-label" })
-                <div class="col-md-5">
-                    @Html.DropDownList("userID", null, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.userID, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.NewAssigneeID, "มอบหมาย", new { @class = "col-md-2 control-label" })
+                <div class="col-md-3">
+                    @Html.DropDownList("NewAssigneeID", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NewAssigneeID, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <br />
-                <div class="col-md-offset-2 col-md-10">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Comment</label>
+                <div class="col-md-5">
+                    @Html.TextAreaFor(x => x.Comment, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Comment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-3">
                     <button type="submit" value="Create" class="btn btn-default">ยืนยันข้อมูล</button>
                     @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
                 </div>
-
-
+            </div>
         </div>
     </div>
-
 }
-
-

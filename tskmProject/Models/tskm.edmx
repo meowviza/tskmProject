@@ -211,7 +211,6 @@
     <Property Name="OldAssigneeID" Type="int" Nullable="true" />
     <Property Name="NewAssigneeID" Type="int" Nullable="true" />
     <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CreatedByUserID" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedByID" Type="int" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
   </EntityType>
@@ -617,7 +616,7 @@
           <Property Name="ticketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ticketTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ticketDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ticketDate" Type="DateTime" Nullable="false" />
+          <Property Name="ticketDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Catagory" Relationship="tskm.CatagoryTicket" FromRole="Ticket" ToRole="Catagory" />
           <Property Name="catagoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Status" Relationship="tskm.StatusTicket" FromRole="Ticket" ToRole="Status" />
@@ -661,7 +660,7 @@
           <Property Name="knowledgeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="knowledgeTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="knowledgeDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="knowledgeDate" Type="DateTime" Nullable="false" />
+          <Property Name="knowledgeDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Catagory" Relationship="tskm.CatagoryKnowledgebase" FromRole="Knowledgebase" ToRole="Catagory" />
           <Property Name="catagoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="KnowledgeComment" Relationship="tskm.KnowledgebaseKnowledgeComment" FromRole="Knowledgebase" ToRole="KnowledgeComment" />
@@ -675,7 +674,7 @@
           </Key>
           <Property Name="replyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="replyDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="replyDate" Type="DateTime" Nullable="false" />
+          <Property Name="replyDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Ticket" Relationship="tskm.TicketTicketReply" FromRole="TicketReply" ToRole="Ticket" />
           <Property Name="ticketID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="tskm.UserTicketReply" FromRole="TicketReply" ToRole="User" />
@@ -688,7 +687,7 @@
           <Property Name="commentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="knowledgeID" Type="Int32" Nullable="false" />
           <Property Name="commentDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="commentDate" Type="DateTime" Nullable="false" />
+          <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Knowledgebase" Relationship="tskm.KnowledgebaseKnowledgeComment" FromRole="KnowledgeComment" ToRole="Knowledgebase" />
           <NavigationProperty Name="User" Relationship="tskm.UserKnowledgeComment" FromRole="KnowledgeComment" ToRole="User" />
           <Property Name="userID" Type="Int32" Nullable="false" />
@@ -853,15 +852,14 @@
           <NavigationProperty Name="OldAssignee" Relationship="tskm.TicketHistoryOldAssignee" FromRole="TicketHistory" ToRole="User" />
           <Property Name="OldAssigneeID" Type="Int32" Nullable="true" />
           <Property Name="NewAssigneeID" Type="Int32" Nullable="true" />
-          <Property Name="Comment" Type="String" Nullable="false" Unicode="true" MaxLength="Max" />
-          <Property Name="CreatedByUserID" Type="String" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" Unicode="true" MaxLength="Max" FixedLength="false" />
           <Property Name="CreatedByID" Type="Int32" Nullable="false" >
             <Documentation>
               <Summary>User ID of creator of this history</Summary>
               <LongDescription>User ID of creator of this history</LongDescription>
             </Documentation>
           </Property>
-          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="NewAssignee" Relationship="tskm.TicketHistoryNewAssignee" FromRole="TicketHistory" ToRole="User" />
           <NavigationProperty Name="CreatedBy" Relationship="tskm.TicketHistoryCreatedByUser" FromRole="TicketHistory" ToRole="User" />
         </EntityType>
@@ -1046,7 +1044,6 @@
           <ScalarProperty Name="OldAssigneeID" ColumnName="OldAssigneeID" />
           <ScalarProperty Name="NewAssigneeID" ColumnName="NewAssigneeID" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
-          <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
           <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
         </MappingFragment>
       </EntityTypeMapping>

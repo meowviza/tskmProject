@@ -18,7 +18,6 @@ namespace tskmProject.Models
         public Nullable<int> OldAssigneeID { get; set; }
         public Nullable<int> NewAssigneeID { get; set; }
         public string Comment { get; set; }
-        public string CreatedByUserID { get; set; }
         public int CreatedByID { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
     
