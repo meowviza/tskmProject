@@ -1,9 +1,9 @@
-﻿@model tskmProject.Models.TicketViewModel
+﻿@model tskmProject.Models.Ticket
 @{
     ViewBag.Title = "แสดงรายละเอียด";
 }
 <div class="row">
-    <h3 class="page-header">ใบงาน @String.Format("{0:D5}", @Model.Ticket.ticketID)</h3>
+    <h3 class="page-header">ใบงาน @String.Format("{0:D5}", @Model.ticketID)</h3>
 </div>
 <div class="panel panel-default">
     <div class="panel panel-heading">
@@ -12,72 +12,94 @@
     <div class="panel-body">
         <dl class="dl-horizontal">
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.Ticket.ticketTitle, "เรื่อง")
+                @Html.LabelFor(model => model.ticketTitle, "เรื่อง")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Ticket.ticketTitle)
+                @Html.DisplayFor(model => model.ticketTitle)
             </dd>
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.Ticket.Catagory.catagoryName, "ประเภทใบงาน")
+                @Html.LabelFor(model => model.Catagory.catagoryName, "ประเภทใบงาน")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Ticket.Catagory.catagoryName)
+                @Html.DisplayFor(model => model.Catagory.catagoryName)
             </dd>
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.Ticket.ticketDetail, "รายละเอียดใบงาน")
+                @Html.LabelFor(model => model.ticketDetail, "รายละเอียดใบงาน")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Ticket.ticketDetail)
+                @Html.DisplayFor(model => model.ticketDetail)
             </dd>
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.Ticket.Assignee, "ผู้รับมอบหมาย")
+                @Html.LabelFor(model => model.Assignee, "ผู้รับมอบหมาย")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Ticket.Assignee.userFname)
+                @Html.DisplayFor(model => model.Assignee.userFname)
+                @if (CurrentUser.GetRoles().Any(x => x.Name == "Admin" || x.Name == "IT Manager" || (x.Name == "IT User" && @Model.AssigneeID == CurrentUser.GetUserID())))
+                {
+                    @Html.ActionLink("มอบหมาย", "Assign", new { id = @Model.ticketID }, new { @class = "btn btn-default" })
+                }
             </dd>
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.Ticket.ticketDate, "วันที่เปิดใบงาน")
+                @Html.LabelFor(model => model.ticketDate, "วันที่เปิดใบงาน")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Ticket.ticketDate)
+                @Html.DisplayFor(model => model.ticketDate)
             </dd>
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.Ticket.Status.statusName, "สถานะใบงาน")
+                @Html.LabelFor(model => model.Status.statusName, "สถานะใบงาน")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Ticket.Status.statusName)
+                @Html.DisplayFor(model => model.Status.statusName)
             </dd>
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.Ticket.User.username, "ผู้สร้าง")
+                @Html.LabelFor(model => model.User.username, "ผู้สร้าง")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Ticket.User.username)
+                @Html.DisplayFor(model => model.User.username)
             </dd>
         </dl>
     </div>
 </div>
 
-@Html.BeginForm("Reply", "Ticket", new { reply = @Model.TicketReply })
+@foreach (var item in @Model.TicketReply.Select(x => new { Title = "ตอบกลับ โดย " + x.User.userFname, Message = x.replyDetail, CreatedDateTime = x.replyDate })
+    .Union(@Model.TicketHistories.Select(x => new { Title = "มอบหมายงาน โดย " + x.CreatedBy.userFname, Message = "ผู้รับมอบหมายงาน -> " + x.NewAssignee.userFname, CreatedDateTime = x.CreatedDateTime }))
+    .OrderBy(x => x.CreatedDateTime))
 {
-<div class="panel panel-default">
-    <div class="panel-heading">
-        ตอบกลับ
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @item.Title (@item.CreatedDateTime)
+        </div>
+        <div class="panel-body">
+            @item.Message
+
+        </div>
     </div>
-    <div class="panel-body">
-        <p>
-            <label>รายละเอียด:</label>
-            @Html.TextAreaFor(model => model.TicketReply.replyDetail)
-        </p>
-        <p class="text-center">
-            <button class="btn btn-default" type="submit">ตอบ</button>
-        </p>
+}
+
+@using (Html.BeginForm("Reply", "Tickets"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true);
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            ตอบกลับ
+        </div>
+        <div class="panel-body">
+            @Html.Hidden("ticketID", @Model.ticketID)
+            <div class="form-group">
+                <label>รายละเอียด:</label>
+                @Html.TextArea("replyDetail", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">ตอบ</button>
+            </div>
+        </div>
     </div>
-</div>
 }
 
 <div class="row">
     <div class="col-md-12 text-center">
         @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
     </div>
-</p>
+    </p>
 </div>

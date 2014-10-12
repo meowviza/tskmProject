@@ -73,21 +73,6 @@ namespace tskmProject
                     });
                 }
 
-                if (!db.Users.Any())
-                {
-                    User user = new User
-                    {
-                        userFname = "Admin",
-                        userLname = "Admin",
-                        username = "admin",
-                        password = "admin",
-                        userTel = "1111",
-                        userEmail = "admin@admin.com",
-                        Department = db.Departments.First()
-                    };
-                    user.Roles.Add(db.Roles.First());
-                }
-
                 if (!db.Status.Any())
                 {
                     db.Status.Add(new Status
@@ -109,6 +94,27 @@ namespace tskmProject
                     {
                         statusName = "Closed"
                     });
+                }
+
+                db.SaveChanges();
+
+                if (!db.Users.Any())
+                {
+                    User user = new User
+                    {
+                        userFname = "Admin",
+                        userLname = "Admin",
+                        username = "admin",
+                        password = "admin",
+                        userTel = "1111",
+                        userEmail = "admin@admin.com",
+                        Department = db.Departments.First(),
+                        userCode = "1111",
+                        userPosition = "Admin"
+                    };
+                    user.Roles.Add(db.Roles.Single(x=>x.Name == "Admin"));
+
+                    db.Users.Add(user);
                 }
 
                 db.SaveChanges();

@@ -56,14 +56,7 @@ namespace tskmProject.Controllers
                 return HttpNotFound();
             }
 
-            TicketViewModel ticketViewModel = new TicketViewModel();
-            ticketViewModel.Ticket = ticket;
-            ticketViewModel.TicketReply = new TicketReply()
-            {
-                ticketID = ticket.ticketID
-            };
-            
-            return View(ticketViewModel);
+            return View(ticket);
         }
 
         // GET: Tickets/Create
@@ -183,18 +176,23 @@ namespace tskmProject.Controllers
         }
         public ActionResult Assign()
         {
+            ViewBag.userID = new SelectList(db.Users, "userID", "userFname");
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Reply(TicketReply reply)
         {
-            reply.userID = CurrentUser.GetUserID().Value;
-            reply.replyDate = DateTime.Now;
-            db.TicketReplies.Add(reply);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                reply.userID = CurrentUser.GetUserID().Value;
+                reply.replyDate = DateTime.Now;
+                db.TicketReplies.Add(reply);
+                db.SaveChanges();
+            }
 
-            return Details(null);
+            return RedirectToAction("Details", new { id = reply.ticketID });
         }
     }
 }
