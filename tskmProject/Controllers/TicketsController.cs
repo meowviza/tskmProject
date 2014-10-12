@@ -63,8 +63,6 @@ namespace tskmProject.Controllers
         public ActionResult Create()
         {
             ViewBag.catagoryID = new SelectList(db.Catagories, "catagoryID", "catagoryName");
-            ViewBag.statusID = new SelectList(db.Status, "statusID", "statusName");
-            ViewBag.userID = new SelectList(db.Users, "userID", "userFname");
             return View();
         }
 
@@ -198,6 +196,7 @@ namespace tskmProject.Controllers
 
             Ticket ticket = db.Tickets.Find(ticketHistory.TicketID);
             ticket.AssigneeID = ticketHistory.NewAssigneeID;
+            ticket.Status = db.Status.Single(x => x.statusName == "In Progress");
 
             db.SaveChanges();
 
