@@ -17,7 +17,7 @@
         <th>รหัสใบงาน</th>
         <th>ชื่อใบงาน</th>
         <th>ประเภทใบงาน</th>
-        <th>ผู้รับผิดชอบ</th>
+        <th>ผู้สร้าง</th>
         <th>วันที่สร้างใบงาน</th>
         <th>สถานะใบงาน</th>
         <th></th>
@@ -27,23 +27,24 @@
     {
         <tr>
             <td>
-                test
+                @Html.DisplayFor(modelItem => @String.Format("{0:D5}", item.ticketID))
             </td>
             <td>
-                test
+                @Html.DisplayFor(modelItem => item.ticketTitle)
             </td>
             <td>
-                test
+                @Html.DisplayFor(modelItem => item.Catagory.catagoryName)
             </td>
             <td>
-                test
+                @Html.DisplayFor(modelItem => item.User.userFname)
             </td>
             <td>
-                test
+                @Html.DisplayFor(modelItem => item.ticketDate)
             </td>
             <td>
-                test
+                @Html.DisplayFor(modelItem => item.Status.statusName)
             </td>
+
             <td>
                 @Html.ActionLink("แก้ไข", "Edit", new { id = item.ticketID }, new { @class = "btn btn-info", role = "button" }) |
                 @Html.ActionLink("แสดงรายละเอียด", "Details", new { id = item.ticketID }, new { @class = "btn btn-info", role = "button" }) 
