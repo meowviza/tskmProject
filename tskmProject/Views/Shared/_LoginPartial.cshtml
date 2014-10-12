@@ -5,11 +5,11 @@
             <span class="navbar-text"><b>ยินดีต้อนรับ</b>  @CurrentUser.GetFullName()</span>
         </li>
         <li>
-            @Html.ActionLink("ออกจากระบบ", "Logout", "Account", null)
+            @Html.ActionLink("ออกจากระบบ", "Logout", "Account", null, null)
         </li>
         }
         else
         {
-        <li>@Html.ActionLink("เข้าสู่ระบบ", "Login", "Account", null)</li>
+        <li>@Html.ActionLink("เข้าสู่ระบบ", "Login", "Account", null, null)</li>
         }
     </ul>

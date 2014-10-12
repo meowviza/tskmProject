@@ -185,6 +185,7 @@
     <Compile Include="Models\TicketReply.cs">
       <DependentUpon>tskm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Models\tskm.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

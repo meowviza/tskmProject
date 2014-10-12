@@ -19,6 +19,77 @@ namespace tskmProject
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             PostAuthenticateRequest += Application_PostAuthenticateRequest;
+
+            using (tskmContainer db = new tskmContainer())
+            {
+                if (!db.Catagories.Any())
+                {
+                    db.Catagories.Add(new Catagory
+                    {
+                        catagoryName = "Hardware"
+                    });
+                    db.Catagories.Add(new Catagory
+                    {
+                        catagoryName = "Software"
+                    });
+                    db.Catagories.Add(new Catagory
+                    {
+                        catagoryName = "Others"
+                    });
+                }
+
+                if (!db.Roles.Any())
+                {
+                    db.Roles.Add(new Role
+                    {
+                        Name = "Admin",
+                        Description = "ผู้ดูแลระบบ"
+                    });
+
+                    db.Roles.Add(new Role
+                    {
+                        Name = "IT Manager",
+                        Description = "ผู้จัดการแผนก IT"
+                    });
+
+                    db.Roles.Add(new Role
+                    {
+                        Name = "IT User",
+                        Description = "เจ้าหน้าที่ IT"
+                    });
+
+                    db.Roles.Add(new Role
+                    {
+                        Name = "User",
+                        Description = "ผู้ใช้งาน"
+                    });
+                }
+
+                if (!db.Departments.Any())
+                {
+                    db.Departments.Add(new Department
+                    {
+                        departmentName = "Admin"
+                    });
+                }
+
+                if (!db.Users.Any())
+                {
+                    User user = new User
+                    {
+                        userFname = "Admin",
+                        userLname = "Admin",
+                        username = "admin",
+                        password = "admin",
+                        userTel = "1111",
+                        userEmail = "admin@admin.com",
+                        Department = db.Departments.First()
+                    };
+                    user.Roles.Add(db.Roles.First());
+                }
+
+                db.SaveChanges();
+            }
         }
         protected void Application_PostAuthenticateRequest(object serder, EventArgs e)
         {
@@ -27,8 +98,8 @@ namespace tskmProject
                 using (tskmContainer db = new tskmContainer())
                 {
                     var roles = (from us in db.Users
-                    where us.username == User.Identity.Name
-                    select us).SingleOrDefault().Roles.Select(x => x.Name);
+                                 where us.username == User.Identity.Name
+                                 select us).SingleOrDefault().Roles.Select(x => x.Name);
 
                     GenericIdentity Identity = new GenericIdentity(User.Identity.Name);
                     GenericPrincipal Principal = new GenericPrincipal(Identity, roles.ToArray());

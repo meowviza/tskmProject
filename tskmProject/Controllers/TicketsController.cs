@@ -54,7 +54,15 @@ namespace tskmProject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(ticket);
+
+            TicketViewModel ticketViewModel = new TicketViewModel();
+            ticketViewModel.Ticket = ticket;
+            ticketViewModel.TicketReply = new TicketReply()
+            {
+                ticketID = ticket.ticketID
+            };
+            
+            return View(ticketViewModel);
         }
 
         // GET: Tickets/Create
@@ -72,7 +80,7 @@ namespace tskmProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ticketID,ticketTitle,contractChannel,ticketDetail,ticketDate,catagoryID,statusID,userID")] Ticket ticket)
+        public ActionResult Create(Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +89,9 @@ namespace tskmProject.Controllers
                 if (userID != null)
                 {
                     ticket.userID = userID.Value;
-                    db.Tickets.Add(ticket); ;
+                    ticket.Status = db.Status.Single(x => x.statusName == "New");
+                    db.Tickets.Add(ticket);
+
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -175,10 +185,16 @@ namespace tskmProject.Controllers
         {
             return View();
         }
-        public ActionResult Update()
-        {
-            return View();
-        }
 
+        [HttpPost]
+        public ActionResult Reply(TicketReply reply)
+        {
+            reply.userID = CurrentUser.GetUserID().Value;
+            reply.replyDate = DateTime.Now;
+            db.TicketReplies.Add(reply);
+            db.SaveChanges();
+
+            return Details(null);
+        }
     }
 }

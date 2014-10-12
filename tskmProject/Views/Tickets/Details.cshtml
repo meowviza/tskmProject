@@ -1,70 +1,83 @@
-﻿@model tskmProject.Models.Ticket
-
+﻿@model tskmProject.Models.TicketViewModel
 @{
     ViewBag.Title = "แสดงรายละเอียด";
 }
-
 <div class="row">
-    <h3 class="page-header">รายละเอียดใบงาน</h3>
+    <h3 class="page-header">ใบงาน @String.Format("{0:D5}", @Model.Ticket.ticketID)</h3>
+</div>
+<div class="panel panel-default">
+    <div class="panel panel-heading">
+        รายละเอียด
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt class="col-md-4">
+                @Html.LabelFor(model => model.Ticket.ticketTitle, "เรื่อง")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.ticketTitle)
+            </dd>
+            <dt class="col-md-4">
+                @Html.LabelFor(model => model.Ticket.Catagory.catagoryName, "ประเภทใบงาน")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.Catagory.catagoryName)
+            </dd>
+            <dt class="col-md-4">
+                @Html.LabelFor(model => model.Ticket.ticketDetail, "รายละเอียดใบงาน")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.ticketDetail)
+            </dd>
+            <dt class="col-md-4">
+                @Html.LabelFor(model => model.Ticket.Assignee, "ผู้รับมอบหมาย")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.Assignee.userFname)
+            </dd>
+            <dt class="col-md-4">
+                @Html.LabelFor(model => model.Ticket.ticketDate, "วันที่เปิดใบงาน")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.ticketDate)
+            </dd>
+            <dt class="col-md-4">
+                @Html.LabelFor(model => model.Ticket.Status.statusName, "สถานะใบงาน")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.Status.statusName)
+            </dd>
+            <dt class="col-md-4">
+                @Html.LabelFor(model => model.Ticket.User.username, "ผู้สร้าง")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.User.username)
+            </dd>
+        </dl>
+    </div>
 </div>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <br />
-            <dl class="dl-horizontal">
-                <dt class="col-md-4">
-                    @Html.LabelFor(model => model.ticketTitle, "เรื่อง")
-                </dt>
+@Html.BeginForm("Reply", "Ticket", new { reply = @Model.TicketReply })
+{
+<div class="panel panel-default">
+    <div class="panel-heading">
+        ตอบกลับ
+    </div>
+    <div class="panel-body">
+        <p>
+            <label>รายละเอียด:</label>
+            @Html.TextAreaFor(model => model.TicketReply.replyDetail)
+        </p>
+        <p class="text-center">
+            <button class="btn btn-default" type="submit">ตอบ</button>
+        </p>
+    </div>
+</div>
+}
 
-                <dd>
-                    @Html.DisplayFor(model => model.ticketTitle)
-                </dd>
-
-                <dt class="col-md-4">
-                    @Html.LabelFor(model => model.Catagory.catagoryName, "ประเภทใบงาน")
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Catagory.catagoryName)
-                </dd>
-
-                <dt class="col-md-4">
-                    @Html.LabelFor(model => model.ticketDetail, "รายละเอียดใบงาน")
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ticketDetail)
-                </dd>
-
-                <dt class="col-md-4">
-                    @Html.LabelFor(model => model.ticketDate, "วันที่เปิดใบงาน")
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ticketDate)
-                </dd>
-
-                <dt class="col-md-4">
-                    @Html.LabelFor(model => model.Status.statusName, "สถานะใบงาน")
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Status.statusName)
-                </dd>
-
-                <dt class="col-md-4">
-                    @Html.LabelFor(model => model.User.username, "ผู้สร้าง")
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.User.username)
-                </dd>
-
-                <p>
-                    @Html.ActionLink("แก้ไข", "Edit", new { id = Model.ticketID }) |
-                    @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
-                </p>
-
-            </dl>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
+    </div>
+</p>
+</div>

@@ -9,7 +9,7 @@
             <h3 class="page-header">เมนูหลัก</h3>
         </div>
 
-        @if (User.IsInRole("เจ้าหน้าที่ไอที"))
+        @if (User.IsInRole("Admin") || User.IsInRole("IT Manager") || User.IsInRole("IT User"))
         {
             @Html.Partial("_ITMenu")
         }
