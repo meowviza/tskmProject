@@ -11,6 +11,7 @@ using System.Web.Security;
 
 namespace tskmProject.Controllers
 {
+    [Authorize]
     public class TicketsController : Controller
     {
         private tskmContainer db = new tskmContainer();
@@ -84,16 +85,15 @@ namespace tskmProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                int? userID = CurrentUser.GetUserID();
+                int userID = CurrentUser.GetUserID().Value;
 
-                if (userID != null)
-                {
-                    ticket.userID = userID.Value;
-                    ticket.Status = db.Status.Single(x => x.statusName == "New");
-                    db.Tickets.Add(ticket);
-
+                ticket.userID = userID;
+                ticket.ticketDate = DateTime.Now;
+                ticket.Status = db.Status.Single(x => x.statusName == "Opened");
+                db.Tickets.Add(ticket);
                     db.SaveChanges();
-                }
+
+
                 return RedirectToAction("Index");
             }
 
