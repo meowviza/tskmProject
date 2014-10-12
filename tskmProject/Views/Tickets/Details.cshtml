@@ -5,9 +5,9 @@
 <div class="row">
     <h3 class="page-header">ใบงาน @String.Format("{0:D5}", @Model.ticketID)</h3>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-info">
     <div class="panel panel-heading">
-        รายละเอียด
+       <b>รายละเอียด</b> 
     </div>
     <div class="panel-body">
         <dl class="dl-horizontal">
@@ -65,13 +65,12 @@
     .Union(@Model.TicketHistories.Select(x => new { Title = "มอบหมายงาน โดย " + x.CreatedBy.userFname, Message = "ผู้รับมอบหมายงาน -> " + x.NewAssignee.userFname, CreatedDateTime = x.CreatedDateTime }))
     .OrderBy(x => x.CreatedDateTime))
 {
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">
-            @item.Title (@item.CreatedDateTime)
+            <b>@item.Title (@item.CreatedDateTime)</b>
         </div>
         <div class="panel-body">
             @item.Message
-
         </div>
     </div>
 }
@@ -80,9 +79,9 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true);
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">
-            ตอบกลับ
+           <b>ตอบกลับ</b> 
         </div>
         <div class="panel-body">
             @Html.Hidden("ticketID", @Model.ticketID)
@@ -95,11 +94,11 @@
             </div>
         </div>
     </div>
+    
 }
 
 <div class="row">
     <div class="col-md-12 text-center">
         @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
     </div>
-    </p>
 </div>

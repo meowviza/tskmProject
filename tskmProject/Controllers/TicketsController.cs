@@ -198,6 +198,7 @@ namespace tskmProject.Controllers
 
             Ticket ticket = db.Tickets.Find(ticketHistory.TicketID);
             ticket.AssigneeID = ticketHistory.NewAssigneeID;
+            ticket.Status = db.Status.Single(x => x.statusName == "In Progress");
 
             db.SaveChanges();
 
