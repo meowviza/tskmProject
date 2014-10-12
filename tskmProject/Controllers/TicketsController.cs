@@ -183,6 +183,7 @@ namespace tskmProject.Controllers
         }
         public ActionResult Assign()
         {
+            ViewBag.userID = new SelectList(db.Users, "userID", "userFname");
             return View();
         }
 

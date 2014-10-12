@@ -19,6 +19,7 @@
         <th>ประเภทใบงาน</th>
         <th>ผู้สร้าง</th>
         <th>วันที่สร้างใบงาน</th>
+        <th>ผู้รับมอบหมายงาน</th>
         <th>สถานะใบงาน</th>
         <th></th>
     </tr>
@@ -27,7 +28,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => @String.Format("{0:D5}", item.ticketID))
+                @String.Format("{0:D5}", item.ticketID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ticketTitle)
@@ -42,11 +43,13 @@
                 @Html.DisplayFor(modelItem => item.ticketDate)
             </td>
             <td>
+
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Status.statusName)
             </td>
 
             <td>
-                @Html.ActionLink("แก้ไข", "Edit", new { id = item.ticketID }, new { @class = "btn btn-info", role = "button" }) |
                 @Html.ActionLink("แสดงรายละเอียด", "Details", new { id = item.ticketID }, new { @class = "btn btn-info", role = "button" }) 
                 
             </td>

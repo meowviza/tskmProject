@@ -1,56 +1,37 @@
 ﻿@model tskmProject.Models.Ticket
 
 @{
-    ViewBag.Title = "มอบหมายงาน";
+    ViewBag.Title = "มอบหมาย";
 }
 
-<h2>Assign</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<div class="row">
-    <h3 class="page-header">รายละเอียดใบงาน</h3>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <br />
-        <dl class="dl-horizontal">
-            <dt class="col-md-4">
-                @Html.LabelFor(model => model.ticketTitle, "เรื่อง")
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ticketTitle)
-            </dd>
-            <dt class="col-md-4">
-                @Html.LabelFor(model => model.Catagory.catagoryName, "ประเภทใบงาน")
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Catagory.catagoryName)
-            </dd>
-            <dt class="col-md-4">
-                @Html.LabelFor(model => model.ticketDetail, "รายละเอียดใบงาน")
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ticketDetail)
-            </dd>
-            <dt class="col-md-4">
-                @Html.LabelFor(model => model.ticketDate, "วันที่เปิดใบงาน")
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ticketDate)
-            </dd>
-            <dt class="col-md-4">
-                @Html.LabelFor(model => model.Status.statusName, "สถานะใบงาน")
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Status.statusName)
-            </dd>
-            <dt class="col-md-4">
-                @Html.LabelFor(model => model.User.username, "ผู้สร้าง")
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.User.username)
-            </dd>
-        </dl>
+    <div class="row">
+        <h3 class="page-header">ใบงาน</h3>
     </div>
-</div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.userID, "มอบหมาย", new { @class = "col-md-2 control-label" })
+                <div class="col-md-5">
+                    @Html.DropDownList("userID", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.userID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" value="Create" class="btn btn-default">ยืนยันข้อมูล</button>
+                    @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
+                </div>
+
+
+        </div>
+    </div>
+
+}
+
 
