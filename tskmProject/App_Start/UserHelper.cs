@@ -27,7 +27,10 @@ namespace tskmProject
                 if (HttpContext.Current.User != null)
                 {
                     _user = db.Users.SingleOrDefault(x => x.username == HttpContext.Current.User.Identity.Name);
-                    _user.Roles.ToList();
+                    if (_user != null)
+                    {
+                        _user.Roles.ToList();
+                    }
                 }
             }
         }
