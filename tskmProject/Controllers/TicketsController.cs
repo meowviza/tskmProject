@@ -217,5 +217,18 @@ namespace tskmProject.Controllers
 
             return RedirectToAction("Details", new { id = reply.ticketID });
         }
+        public ActionResult Status(int id)
+        {
+            ViewBag.statusID = new SelectList(db.Status, "statusID", "statusName");
+            return View();
+        }
+        //[HttpPost]
+        //public ActionResult Status(Status status)
+        //{
+        //    ticket.Status = db.Status.Single(x => x.statusName == "Waiting for closing");
+        //    db.SaveChanges();
+
+        //    return RedirectToAction("Details");
+        //}
     }
 }

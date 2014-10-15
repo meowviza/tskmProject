@@ -5,9 +5,9 @@
 <div class="row">
     <h3 class="page-header">ใบงาน @String.Format("{0:D5}", @Model.ticketID)</h3>
 </div>
-<div class="panel panel-info">
+<div class="panel panel-primary">
     <div class="panel panel-heading">
-       <b>รายละเอียด</b> 
+        <b>รายละเอียด</b>
     </div>
     <div class="panel-body">
         <dl class="dl-horizontal">
@@ -36,7 +36,7 @@
                 @Html.DisplayFor(model => model.Assignee.userFname)
                 @if (CurrentUser.GetRoles().Any(x => x.Name == "Admin" || x.Name == "IT Manager" || (x.Name == "IT User" && @Model.AssigneeID == CurrentUser.GetUserID())))
                 {
-                    @Html.ActionLink("มอบหมาย", "Assign", new { id = @Model.ticketID }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("มอบหมาย", "Assign", new { id = @Model.ticketID }, new { @class = "btn btn-info" })
                 }
             </dd>
             <dt class="col-md-4">
@@ -50,6 +50,15 @@
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.Status.statusName)
+                @if (CurrentUser.GetRoles().Any(x => x.Name == "Admin" || x.Name == "IT Manager" || (x.Name == "IT User" && @Model.AssigneeID == CurrentUser.GetUserID())))
+                {
+                    @Html.ActionLink("Waiting for user confirmation", "Status", new { id = @Model.statusID }, new { @class = "btn btn-warning" })
+                }
+                else
+                {
+                    @Html.ActionLink("Closed", "Status", new { id = @Model.statusID }, new { @class = "btn btn-danger" })
+                }
+
             </dd>
             <dt class="col-md-4">
                 @Html.LabelFor(model => model.User.username, "ผู้สร้าง")
@@ -60,7 +69,6 @@
         </dl>
     </div>
 </div>
-
 @foreach (var item in @Model.TicketReply.Select(x => new { Title = "ตอบกลับ โดย " + x.User.userFname, Message = x.replyDetail, CreatedDateTime = x.replyDate })
     .Union(@Model.TicketHistories.Select(x => new { Title = "มอบหมายงาน โดย " + x.CreatedBy.userFname, Message = "ผู้รับมอบหมายงาน -> " + x.NewAssignee.userFname, CreatedDateTime = x.CreatedDateTime }))
     .OrderBy(x => x.CreatedDateTime))
@@ -74,14 +82,13 @@
         </div>
     </div>
 }
-
 @using (Html.BeginForm("Reply", "Tickets"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true);
-    <div class="panel panel-info">
+    <div class="panel panel-warning">
         <div class="panel-heading">
-           <b>ตอบกลับ</b> 
+            <b>ตอบกลับ</b>
         </div>
         <div class="panel-body">
             @Html.Hidden("ticketID", @Model.ticketID)
@@ -94,9 +101,8 @@
             </div>
         </div>
     </div>
-    
-}
 
+}
 <div class="row">
     <div class="col-md-12 text-center">
         @Html.ActionLink("กลับสู่หน้าหลัก", "Index")

@@ -151,6 +151,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\KnowledgebasesController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -415,9 +416,11 @@
     <Content Include="Views\Account\_OtherMenu.cshtml" />
     <Content Include="Views\Knowledgebases\Comment.cshtml" />
     <Content Include="Views\Tickets\Assign.cshtml" />
+    <Content Include="Views\Tickets\Status.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Status\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

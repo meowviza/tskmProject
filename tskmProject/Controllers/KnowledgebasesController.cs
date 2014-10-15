@@ -163,7 +163,6 @@ namespace tskmProject.Controllers
                 {
                     comment.userID = userID.Value;
                     comment.commentDate = DateTime.Now;
-
                     db.KnowledgeComments.Add(comment);
                     db.SaveChanges();
                 }

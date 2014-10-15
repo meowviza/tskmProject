@@ -58,3 +58,24 @@
         </div>
     </div>
 }
+@using (Html.BeginForm("Comment", "Knowledgebases"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true);
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <b>เพิ่มความคิดเห็น</b>
+        </div>
+        <div class="panel-body">
+            @Html.Hidden("knowledgeID", @Model.knowledgeID)
+            <div class="form-group">
+                <label>รายละเอียด:</label>
+                @Html.TextArea("replyDetail", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">ตอบ</button>
+            </div>
+        </div>
+    </div>
+
+}
