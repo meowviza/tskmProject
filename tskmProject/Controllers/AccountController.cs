@@ -94,6 +94,10 @@ namespace tskmProject.Controllers
         [Authorize]
         public ActionResult Menu()
         {
+            int currentUserID = CurrentUser.GetUserID().Value;
+            ViewBag.NumberOfAssignedTicket = db.Tickets.Where(x => x.AssigneeID == currentUserID && x.Status.statusName == "In Progress").Count();
+            ViewBag.NumberOfWaitingForClosingTicket = db.Tickets.Where(x => x.userID == currentUserID && x.Status.statusName == "Waiting for closing").Count();
+
             return View();
         }
         [Authorize]
