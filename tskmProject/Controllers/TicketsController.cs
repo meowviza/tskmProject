@@ -236,5 +236,25 @@ namespace tskmProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Details", new { id = ticket.ticketID });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReopenTicket(Ticket ticket)
+        {
+            Ticket dbTicket = db.Tickets.Find(ticket.ticketID);
+
+            if (dbTicket.AssigneeID != null)
+            {
+                dbTicket.Status = db.Status.Single(x => x.statusName == "In Progress");
+            }
+            else
+            {
+                dbTicket.Status = db.Status.Single(x => x.statusName == "Opened");
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = ticket.ticketID });
+        }
     }
 }
