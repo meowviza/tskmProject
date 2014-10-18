@@ -50,23 +50,19 @@
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.Status.statusName)
-                @if (CurrentUser.GetRoles().Any(x => x.Name == "Admin" || x.Name == "IT Manager" || (x.Name == "IT User" && @Model.AssigneeID == CurrentUser.GetUserID())))
-                {
-                    @Html.ActionLink("Waiting for user confirmation", "Status", new { id = @Model.statusID }, new { @class = "btn btn-warning" })
-                }
-                else
-                {
-                    @Html.ActionLink("Closed", "Status", new { id = @Model.statusID }, new { @class = "btn btn-danger" })
-                }
-
             </dd>
             <dt class="col-md-4">
                 @Html.LabelFor(model => model.User.username, "ผู้สร้าง")
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.User.username)
-            </dd>
+            </dd>           
         </dl>
+        <div class="row">
+            <div class="col-md-5">
+                @Html.ActionLink("Closed", "Index", new { id = @Model.statusID }, new { @class = "btn btn-success" })
+            </div>
+        </div>
     </div>
 </div>
 @foreach (var item in @Model.TicketReply.Select(x => new { Title = "ตอบกลับ โดย " + x.User.userFname, Message = x.replyDetail, CreatedDateTime = x.replyDate })

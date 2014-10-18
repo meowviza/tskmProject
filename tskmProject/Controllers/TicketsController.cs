@@ -217,18 +217,21 @@ namespace tskmProject.Controllers
 
             return RedirectToAction("Details", new { id = reply.ticketID });
         }
-        public ActionResult Status(int id)
+        [HttpPost]
+        public ActionResult ChangeStatus(Ticket status)
         {
-            ViewBag.statusID = new SelectList(db.Status, "statusID", "statusName");
-            return View();
+            Ticket ticket = db.Tickets.Find(status.statusID);
+            ticket.ticketID = ticket.statusID;
+            if (CurrentUser.GetRoles().Any(x => x.Name == "IT User" && ticket.statusID == CurrentUser.GetUserID()))
+            {               
+                ticket.Status = db.Status.Single(x => x.statusName == "Waiting for closing");
+            }
+            else
+            {
+                ticket.Status = db.Status.Single(x => x.statusName == "Closed");
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index", new { id = ticket.statusID});
         }
-        //[HttpPost]
-        //public ActionResult Status(Status status)
-        //{
-        //    ticket.Status = db.Status.Single(x => x.statusName == "Waiting for closing");
-        //    db.SaveChanges();
-
-        //    return RedirectToAction("Details");
-        //}
     }
 }
