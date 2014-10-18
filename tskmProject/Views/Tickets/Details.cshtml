@@ -56,11 +56,19 @@
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.User.username)
-            </dd>           
+            </dd>
         </dl>
         <div class="row">
             <div class="col-md-5">
-                @Html.ActionLink("Closed", "Index", new { id = @Model.statusID }, new { @class = "btn btn-success" })
+                @if (!(Model.Status.statusName == "Closed" || (Model.Status.statusName == "Waiting for closing" && CurrentUser.GetRoles().Any(x => x.Name == "Admin" || x.Name == "IT User"))))
+                {
+                    using (Html.BeginForm("CloseTicket", "Tickets"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.ticketID)
+                        <button type="submit" class="btn btn-default">Close Ticket</button>
+                    }
+                }
             </div>
         </div>
     </div>
@@ -78,6 +86,7 @@
         </div>
     </div>
 }
+
 @using (Html.BeginForm("Reply", "Tickets"))
 {
     @Html.AntiForgeryToken()
@@ -97,7 +106,6 @@
             </div>
         </div>
     </div>
-
 }
 <div class="row">
     <div class="col-md-12 text-center">

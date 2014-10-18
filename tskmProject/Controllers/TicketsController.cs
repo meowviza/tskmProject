@@ -82,7 +82,7 @@ namespace tskmProject.Controllers
                 ticket.ticketDate = DateTime.Now;
                 ticket.Status = db.Status.Single(x => x.statusName == "Opened");
                 db.Tickets.Add(ticket);
-                    db.SaveChanges();
+                db.SaveChanges();
 
 
                 return RedirectToAction("Index");
@@ -181,7 +181,8 @@ namespace tskmProject.Controllers
                 return HttpNotFound();
             }
 
-            return View(new TicketHistory{
+            return View(new TicketHistory
+            {
                 TicketID = ticket.ticketID,
                 OldAssigneeID = ticket.AssigneeID,
             });
@@ -217,21 +218,23 @@ namespace tskmProject.Controllers
 
             return RedirectToAction("Details", new { id = reply.ticketID });
         }
+
         [HttpPost]
-        public ActionResult ChangeStatus(Ticket status)
+        [ValidateAntiForgeryToken]
+        public ActionResult CloseTicket(Ticket ticket)
         {
-            Ticket ticket = db.Tickets.Find(status.statusID);
-            ticket.ticketID = ticket.statusID;
-            if (CurrentUser.GetRoles().Any(x => x.Name == "IT User" && ticket.statusID == CurrentUser.GetUserID()))
-            {               
-                ticket.Status = db.Status.Single(x => x.statusName == "Waiting for closing");
-            }
-            else
+            Ticket dbTicket = db.Tickets.Find(ticket.ticketID);
+
+            if (CurrentUser.GetUserID().Value == dbTicket.userID)
             {
-                ticket.Status = db.Status.Single(x => x.statusName == "Closed");
+                dbTicket.Status = db.Status.Single(x=> x.statusName == "Closed");
+            }
+            else if (CurrentUser.GetRoles().Any(x => x.Name == "Admin" || x.Name == "IT User"))
+            {
+                dbTicket.Status = db.Status.Single(x => x.statusName == "Waiting for closing");
             }
             db.SaveChanges();
-            return RedirectToAction("Index", new { id = ticket.statusID});
+            return RedirectToAction("Details", new { id = ticket.ticketID });
         }
     }
 }
