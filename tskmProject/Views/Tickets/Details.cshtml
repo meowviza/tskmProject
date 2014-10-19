@@ -66,10 +66,9 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.ticketID)
-                        <button type="submit" class="btn btn-default">Close Ticket</button>
+                        <button type="submit" class="btn btn-success">Close Ticket</button>
                     }
                 }
-
                 @if (Model.Status.statusName == "Closed" && (CurrentUser.GetRoles().Any(x => x.Name == "Admin" || Model.userID == CurrentUser.GetUserID().Value)))
                 {
                     using (Html.BeginForm("ReopenTicket", "Tickets"))
@@ -96,7 +95,6 @@
         </div>
     </div>
 }
-
 @using (Html.BeginForm("Reply", "Tickets"))
 {
     @Html.AntiForgeryToken()
