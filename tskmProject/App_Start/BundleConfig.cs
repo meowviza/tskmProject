@@ -28,6 +28,9 @@ namespace tskmProject
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-datepicker.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/highcharts").Include(
+                "~/Scripts/Highcharts-4.0.1/js/highcharts.js"));
             
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

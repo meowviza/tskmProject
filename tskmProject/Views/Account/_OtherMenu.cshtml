@@ -3,25 +3,28 @@
         <div class="row">
             <div class="col-md-4">
                 <p class="text-center">
-                    <img src="~/images/ticket.png" /> <br />
+                    <img src="~/images/ticket.png"><br>
                     @Html.ActionLink("เปิดใบงาน", "Create", "Tickets")
                 </p>
             </div>
-
             <div class="col-md-4 text-center">
                 <p class="text-center">
-                    <img src="~/images/task_report.png" /> <br />
+                    <img src="~/images/task_report.png"><br>
                     @Html.ActionLink("ติดตามใบงาน", "Index", "Tickets")
                 </p>
             </div>
-
             <div class="col-md-4">
                 <p class="text-center">
-                    <img src="~/images/search.png" /> <br />
+                    <img src="~/images/search.png"><br>
                     @Html.ActionLink("องค์ความรู้", "Index", "Knowledgebases")
                 </p>
             </div>
-
+            <div class="col-md-4">
+                <p class="text-center">
+                    <img src="~/images/graph.png" /><br />
+                    @Html.ActionLink("รายงานปฏิบัติงาน", "Index", "Report")
+                </p>
+            </div>
         </div>
     </div>
 </div>

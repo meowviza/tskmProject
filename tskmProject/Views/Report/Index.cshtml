@@ -1,0 +1,30 @@
+﻿@using DotNet.Highcharts;
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Report</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Ticket Status Ratio
+            </div>
+            <div class="panel-body">
+                @((Highcharts)ViewBag.TicketStatusRatioChart)
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/highcharts")
+}

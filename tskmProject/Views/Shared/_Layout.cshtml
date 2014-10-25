@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - ระบบการจัดการแจ้งปัญหาและติดตามงาน โดยใช้การจัดการความรู้</title>
 
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -42,7 +43,6 @@
                 <p>&copy; @DateTime.Now.Year - ฝ่ายปฏิบัติการและบริการเครือข่ายเทคโนโลยีสารสนเทศ</p>
             </footer>
         </div>
-        @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
 
