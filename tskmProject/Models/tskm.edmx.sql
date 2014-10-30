@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/12/2014 18:41:14
--- Generated from EDMX file: C:\Users\Thanasarn\Source\Repos\tskmProject\tskmProject\Models\tskm.edmx
+-- Date Created: 10/30/2014 16:05:35
+-- Generated from EDMX file: C:\Users\ViZa\Documents\Visual Studio 2013\Projects\tskmProject\tskmProject\Models\tskm.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,62 +17,26 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_DepartmentUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_DepartmentUser];
+GO
 IF OBJECT_ID(N'[dbo].[FK_CatagoryKnowledgebase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Knowledgebases] DROP CONSTRAINT [FK_CatagoryKnowledgebase];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CatagoryTicket]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_CatagoryTicket];
 GO
-IF OBJECT_ID(N'[dbo].[FK_DepartmentUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_DepartmentUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_File]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_File];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_Knowledgebase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_Knowledgebase];
-GO
-IF OBJECT_ID(N'[dbo].[FK_KnowledgebaseKnowledgeComment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[KnowledgeComments] DROP CONSTRAINT [FK_KnowledgebaseKnowledgeComment];
-GO
 IF OBJECT_ID(N'[dbo].[FK_StatusTicket]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_StatusTicket];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketFiles_File]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_File];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketFiles_Ticket]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_Ticket];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketHistoryCreatedByUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryCreatedByUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketHistoryNewAssignee]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryNewAssignee];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketHistoryOldAssignee]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryOldAssignee];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TicketTicketHistory]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketTicketHistory];
 GO
 IF OBJECT_ID(N'[dbo].[FK_TicketTicketReply]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TicketReplies] DROP CONSTRAINT [FK_TicketTicketReply];
 GO
-IF OBJECT_ID(N'[dbo].[FK_TicketUserAssignee]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_TicketUserAssignee];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserKnowledgebase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Knowledgebases] DROP CONSTRAINT [FK_UserKnowledgebase];
+IF OBJECT_ID(N'[dbo].[FK_KnowledgebaseKnowledgeComment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KnowledgeComments] DROP CONSTRAINT [FK_KnowledgebaseKnowledgeComment];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserKnowledgeComment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[KnowledgeComments] DROP CONSTRAINT [FK_UserKnowledgeComment];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserRoles_Role]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_Role];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserRoles_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_User];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserTicket]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_UserTicket];
@@ -80,52 +44,88 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserTicketReply]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TicketReplies] DROP CONSTRAINT [FK_UserTicketReply];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserRoles_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserRoles_Role]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_Role];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketFiles_Ticket]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_Ticket];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketFiles_File]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketFiles] DROP CONSTRAINT [FK_TicketFiles_File];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_File]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_File];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FileKnowledgebases_Knowledgebase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FileKnowledgebases] DROP CONSTRAINT [FK_FileKnowledgebases_Knowledgebase];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserKnowledgebase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Knowledgebases] DROP CONSTRAINT [FK_UserKnowledgebase];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketTicketHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketTicketHistory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketHistoryOldAssignee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryOldAssignee];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketUserAssignee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Tickets] DROP CONSTRAINT [FK_TicketUserAssignee];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketHistoryNewAssignee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryNewAssignee];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketHistoryCreatedByUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TicketHistories] DROP CONSTRAINT [FK_TicketHistoryCreatedByUser];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Catagories]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Catagories];
-GO
 IF OBJECT_ID(N'[dbo].[Departments]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Departments];
 GO
-IF OBJECT_ID(N'[dbo].[FileKnowledgebases]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FileKnowledgebases];
-GO
-IF OBJECT_ID(N'[dbo].[Files]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Files];
-GO
-IF OBJECT_ID(N'[dbo].[Knowledgebases]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Knowledgebases];
-GO
-IF OBJECT_ID(N'[dbo].[KnowledgeComments]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[KnowledgeComments];
-GO
-IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Roles];
-GO
-IF OBJECT_ID(N'[dbo].[Status]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Status];
-GO
-IF OBJECT_ID(N'[dbo].[TicketFiles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[TicketFiles];
-GO
-IF OBJECT_ID(N'[dbo].[TicketHistories]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[TicketHistories];
-GO
-IF OBJECT_ID(N'[dbo].[TicketReplies]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[TicketReplies];
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
 GO
 IF OBJECT_ID(N'[dbo].[Tickets]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Tickets];
 GO
+IF OBJECT_ID(N'[dbo].[Catagories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Catagories];
+GO
+IF OBJECT_ID(N'[dbo].[Status]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Status];
+GO
+IF OBJECT_ID(N'[dbo].[Knowledgebases]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Knowledgebases];
+GO
+IF OBJECT_ID(N'[dbo].[TicketReplies]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TicketReplies];
+GO
+IF OBJECT_ID(N'[dbo].[KnowledgeComments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KnowledgeComments];
+GO
+IF OBJECT_ID(N'[dbo].[Files]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Files];
+GO
+IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Roles];
+GO
+IF OBJECT_ID(N'[dbo].[TicketHistories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TicketHistories];
+GO
 IF OBJECT_ID(N'[dbo].[UserRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserRoles];
 GO
-IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users];
+IF OBJECT_ID(N'[dbo].[TicketFiles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TicketFiles];
+GO
+IF OBJECT_ID(N'[dbo].[FileKnowledgebases]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FileKnowledgebases];
 GO
 
 -- --------------------------------------------------

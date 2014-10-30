@@ -18,7 +18,6 @@ namespace tskmProject.Models
         public tskmContainer()
             : base("name=tskmContainer")
         {
-            this.Database.Connection.ConnectionString = "data source=TNASAN;initial catalog=tskmDB;user ID=sa;password=thA1g@m1ng;MultipleActiveResultSets=True;App=EntityFramework";
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
