@@ -8,7 +8,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>KnowledgeComment</h4>
+        <h3 class="page-header">เพิ่มเติมความคิดเห็น</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(x => x.knowledgeID);
