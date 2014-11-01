@@ -444,14 +444,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Tickets\Create.cshtml" />
-    <Content Include="Views\Tickets\Delete.cshtml" />
     <Content Include="Views\Tickets\Details.cshtml" />
-    <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\Knowledgebases\Create.cshtml" />
-    <Content Include="Views\Knowledgebases\Delete.cshtml" />
     <Content Include="Views\Knowledgebases\Details.cshtml" />
-    <Content Include="Views\Knowledgebases\Edit.cshtml" />
     <Content Include="Views\Knowledgebases\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />

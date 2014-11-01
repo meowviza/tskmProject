@@ -80,10 +80,10 @@ namespace tskmProject.Controllers
 
                 ticket.userID = userID;
                 ticket.CreatedDate = DateTime.Now;
+                ticket.UpdatedDate = DateTime.Now;
                 ticket.Status = db.Status.Single(x => x.statusName == "Opened");
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
-
 
                 return RedirectToAction("Index");
             }
@@ -197,6 +197,7 @@ namespace tskmProject.Controllers
 
             Ticket ticket = db.Tickets.Find(ticketHistory.TicketID);
             ticket.AssigneeID = ticketHistory.NewAssigneeID;
+            ticket.UpdatedDate = DateTime.Now;
             ticket.Status = db.Status.Single(x => x.statusName == "In Progress");
 
             db.SaveChanges();
@@ -224,6 +225,7 @@ namespace tskmProject.Controllers
         public ActionResult CloseTicket(Ticket ticket)
         {
             Ticket dbTicket = db.Tickets.Find(ticket.ticketID);
+            ticket.UpdatedDate = DateTime.Now;
 
             if (CurrentUser.GetUserID().Value == dbTicket.userID)
             {
@@ -242,6 +244,7 @@ namespace tskmProject.Controllers
         public ActionResult ReopenTicket(Ticket ticket)
         {
             Ticket dbTicket = db.Tickets.Find(ticket.ticketID);
+            ticket.UpdatedDate = DateTime.Now;
 
             if (dbTicket.AssigneeID != null)
             {

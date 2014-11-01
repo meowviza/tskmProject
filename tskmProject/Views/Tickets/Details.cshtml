@@ -40,10 +40,10 @@
                 }
             </dd>
             <dt class="col-md-4">
-                @Html.LabelFor(model => model.ticketDate, "วันที่เปิดใบงาน")
+                @Html.LabelFor(model => model.CreatedDate, "วันที่เปิดใบงาน")
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.ticketDate)
+                @Html.DisplayFor(model => model.CreatedDate)
             </dd>
             <dt class="col-md-4">
                 @Html.LabelFor(model => model.Status.statusName, "สถานะใบงาน")
@@ -75,7 +75,7 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.ticketID)
-                        <button type="submit" class="btn btn-default">Reopen Ticket</button>
+                        <button type="submit" class="btn btn-warning">Reopen Ticket</button>
                     }
                 }
             </div>
