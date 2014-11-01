@@ -24,13 +24,14 @@ namespace tskmProject.Models
         public int ticketID { get; set; }
         public string ticketTitle { get; set; }
         public string ticketDetail { get; set; }
-        public System.DateTime ticketDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
         public int catagoryID { get; set; }
         public int statusID { get; set; }
         public int userID { get; set; }
         public string Place { get; set; }
         public string Tel { get; set; }
         public Nullable<int> AssigneeID { get; set; }
+        public System.DateTime UpdatedDate { get; set; }
     
         public virtual Catagory Catagory { get; set; }
         public virtual Status Status { get; set; }

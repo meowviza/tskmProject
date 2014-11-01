@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/30/2014 16:05:35
+-- Date Created: 11/01/2014 13:12:31
 -- Generated from EDMX file: C:\Users\ViZa\Documents\Visual Studio 2013\Projects\tskmProject\tskmProject\Models\tskm.edmx
 -- --------------------------------------------------
 
@@ -159,13 +159,14 @@ CREATE TABLE [dbo].[Tickets] (
     [ticketID] int IDENTITY(1,1) NOT NULL,
     [ticketTitle] nvarchar(max)  NOT NULL,
     [ticketDetail] nvarchar(max)  NOT NULL,
-    [ticketDate] datetime  NOT NULL,
+    [CreatedDate] datetime  NOT NULL,
     [catagoryID] int  NOT NULL,
     [statusID] int  NOT NULL,
     [userID] int  NOT NULL,
     [Place] nvarchar(max)  NOT NULL,
     [Tel] nvarchar(max)  NOT NULL,
-    [AssigneeID] int  NULL
+    [AssigneeID] int  NULL,
+    [UpdatedDate] datetime  NOT NULL
 );
 GO
 

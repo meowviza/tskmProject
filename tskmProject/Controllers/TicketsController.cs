@@ -79,7 +79,7 @@ namespace tskmProject.Controllers
                 int userID = CurrentUser.GetUserID().Value;
 
                 ticket.userID = userID;
-                ticket.ticketDate = DateTime.Now;
+                ticket.CreatedDate = DateTime.Now;
                 ticket.Status = db.Status.Single(x => x.statusName == "Opened");
                 db.Tickets.Add(ticket);
                 db.SaveChanges();

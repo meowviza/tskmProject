@@ -134,13 +134,14 @@
     <Property Name="ticketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ticketTitle" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ticketDetail" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ticketDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="catagoryID" Type="int" Nullable="false" />
     <Property Name="statusID" Type="int" Nullable="false" />
     <Property Name="userID" Type="int" Nullable="false" />
     <Property Name="Place" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Tel" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AssigneeID" Type="int" Nullable="true" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Catagories">
     <Key>
@@ -616,7 +617,7 @@
           <Property Name="ticketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ticketTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ticketDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ticketDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Catagory" Relationship="tskm.CatagoryTicket" FromRole="Ticket" ToRole="Catagory" />
           <Property Name="catagoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Status" Relationship="tskm.StatusTicket" FromRole="Ticket" ToRole="Status" />
@@ -635,6 +636,7 @@
           </NavigationProperty>
           <Property Name="AssigneeID" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Assignee" Relationship="tskm.TicketUserAssignee" FromRole="Ticket" ToRole="User" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Catagory">
           <Key>
@@ -959,13 +961,14 @@
           <ScalarProperty Name="ticketID" ColumnName="ticketID" />
           <ScalarProperty Name="ticketTitle" ColumnName="ticketTitle" />
           <ScalarProperty Name="ticketDetail" ColumnName="ticketDetail" />
-          <ScalarProperty Name="ticketDate" ColumnName="ticketDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="catagoryID" ColumnName="catagoryID" />
           <ScalarProperty Name="statusID" ColumnName="statusID" />
           <ScalarProperty Name="userID" ColumnName="userID" />
           <ScalarProperty Name="Place" ColumnName="Place" />
           <ScalarProperty Name="Tel" ColumnName="Tel" />
           <ScalarProperty Name="AssigneeID" ColumnName="AssigneeID" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
