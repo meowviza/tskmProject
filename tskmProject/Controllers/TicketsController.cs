@@ -39,8 +39,20 @@ namespace tskmProject.Controllers
         //}
         public ActionResult Index()
         {
-            var ticketSet = db.Tickets.Include(t => t.Catagory).Include(t => t.Status).Include(t => t.User);
-            return View(ticketSet.ToList());
+            int userID = CurrentUser.GetUserID().Value;
+            
+            IEnumerable<Ticket> ticketList;
+            if (CurrentUser.GetRoles().Any(x => x.Name == "Admin"))
+            {
+                ticketList = from Ticket in db.Tickets
+                             select Ticket;
+            }else
+            {
+                ticketList = from Ticket in db.Tickets
+                             where Ticket.AssigneeID == userID || Ticket.userID == userID
+                             select Ticket;
+            }       
+            return View(ticketList.ToList());
         }
 
         // GET: Tickets/Details/5
