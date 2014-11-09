@@ -45,38 +45,17 @@
 </div>
 @foreach (var item in Model.KnowledgeComment)
 {
-    <div class="panel panel-default">
+    <div class="panel panel-success">
         <div class="panel-heading">
-            ตอบกลับโดย @item.User.userFname
+           <b>ตอบกลับโดย</b>  @item.User.userFname
         </div>
         <div class="panel-body">
             <dl class="dl-horizontal">
-                <dt>เมื่อ</dt>
-                <dd>@item.commentDate</dd>
                 <dt>ข้อความ</dt>
                 <dd>@item.commentDetail</dd>
+                <dt>เมื่อ</dt>
+                <dd>@item.commentDate</dd>
             </dl>
         </div>
     </div>
-}
-@using (Html.BeginForm("Comment", "Knowledgebases"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true);
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <b>เพิ่มความคิดเห็น</b>
-        </div>
-        <div class="panel-body">
-            @Html.Hidden("knowledgeID", @Model.knowledgeID)
-            <div class="form-group">
-                <label>รายละเอียด:</label>
-                @Html.TextArea("replyDetail", new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                <button class="btn btn-default" type="submit">ตอบ</button>
-            </div>
-        </div>
-    </div>
-
 }

@@ -1,21 +1,22 @@
 ﻿@model tskmProject.Models.KnowledgeComment
 @{
-    ViewBag.Title = "Comment";
+    ViewBag.Title = "ความคิดเห็น";
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
-        <h3 class="page-header">เพิ่มเติมความคิดเห็น</h3>
-        <hr />
+        <div class=" =row">
+            <h3 class="page-header">เพิ่มความคิดเห็น</h3>
+        </div>
+        <br />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(x => x.knowledgeID);
+        @Html.HiddenFor(x => x.knowledgeID)
         <div class="form-group">
-            @Html.LabelFor(model => model.commentDetail, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.commentDetail,"ความคิดเห็น", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.commentDetail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.commentDetail, 10, 80, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.commentDetail, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -29,7 +30,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("กลับสู่หน้าหลัก", "Index")
 </div>
 
 @Scripts.Render("~/bundles/jquery")

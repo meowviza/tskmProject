@@ -42,6 +42,7 @@ namespace tskmProject.Controllers
                 ViewBag.TicketStatusRatioChart = ticketStatusRatioChart;
                 #endregion
 
+                //Ticket Opened/Closed in each month
                 #region Sample: Ticket Opened/Closed in each month
                 var ticketOpenStat = (from ticket in db.Tickets.ToList()
                                       group ticket by new { Month = ticket.CreatedDate.Month, Year = ticket.CreatedDate.Year } into g
@@ -82,8 +83,49 @@ namespace tskmProject.Controllers
 
                 ViewBag.TicketOpenCloseStatChart = ticketOpenCloseStatChart;
                 #endregion
-            }
 
+                //KM Create/Post in each month (Line Chart)
+                #region Sample: Line Chart for KM
+
+                var knowledgeCreateStat = (from knowledgebase in db.Knowledgebases.ToList()
+                                           group knowledgebase by new { Month = knowledgebase.knowledgeDate.Month, Year = knowledgebase.knowledgeDate.Year } into k
+                                           select new DotNet.Highcharts.Options.Point 
+                                           {
+                                               Name = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(k.Key.Month) + "/" + k.Key.Year,
+                                               X = k.Count()      
+                                           }).ToArray();
+
+                var knowledgeCommentStat = (from comment in db.KnowledgeComments.ToList()
+                                            group comment by new { Month = comment.commentDate.Month, Year = comment.commentDate.Year} into k
+                                            select new DotNet.Highcharts.Options.Point
+                                            {
+                                                Name = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(k.Key.Month) + "/" + k.Key.Year,
+                                                Y = k.Count()
+                                            }).ToArray();
+
+                var knowledgeCreateCommentStatChart = new Highcharts("KnowledgeCreateCommentStat")
+                .SetTitle(new Title{Text = "Create/Comment Knowledgebase in each month"})
+                .SetXAxis(new DotNet.Highcharts.Options.XAxis
+                {
+                    Categories = knowledgeCommentStat.Union(knowledgeCreateStat).Select(x => x.Name).GroupBy(x => x).Select(x => x.Key).ToArray()
+                })
+                .SetSeries(new Series[] {
+                        new Series
+                        {
+                            Type = ChartTypes.Line,
+                            Name = "Create",
+                            Data = new Data(knowledgeCreateStat)
+                        },
+                        new Series
+                        {
+                            Type = ChartTypes.Line,
+                            Name = "Comment",
+                            Data = new Data(knowledgeCommentStat)
+                        }});
+                ViewBag.KnowledgeCreateCommentStatChart = knowledgeCreateCommentStatChart;
+                #endregion
+
+            }
             return View();
         }
     }
