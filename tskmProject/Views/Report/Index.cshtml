@@ -8,12 +8,12 @@
         <h3 class="page-header">สถิติการปฏิบัติงาน</h3>
     </div>
 </div>
-
+<br />
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Ticket Status Ratio
+                สถิติสถานะใบงานแบบรายเดือน
             </div>
             <div class="panel-body">
                 @((Highcharts)ViewBag.TicketStatusRatioChart)
@@ -23,7 +23,7 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Opened/Closed Ticket in each month
+                สถิติการเปิดและปิดใบงานแบบรายเดือน
             </div>
             <div class="panel-body">
                 @((Highcharts)ViewBag.TicketOpenCloseStatChart)
@@ -33,7 +33,7 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                KM Open in each month
+                สถิติการสร้างและถาม-ตอบใบความรู้แบบรายเดือนเดือน
             </div>
             <div class="panel-body">
                 @((Highcharts)ViewBag.knowledgeCreateCommentStatChart)
@@ -41,7 +41,7 @@
         </div>
     </div>
 </div>
-
+<br />
 <div class="row">
     <div class="col-md-12 text-center">
         @Html.ActionLink("กลับสู่หน้าหลัก", "Index")

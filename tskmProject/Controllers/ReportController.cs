@@ -84,30 +84,34 @@ namespace tskmProject.Controllers
                 ViewBag.TicketOpenCloseStatChart = ticketOpenCloseStatChart;
                 #endregion
 
-                //KM Create/Post in each month (Line Chart)
+                //Create/Post KM in each month (Line Chart)
                 #region Sample: Line Chart for KM
-
-                var knowledgeCreateStat = (from knowledgebase in db.Knowledgebases.ToList()
-                                           group knowledgebase by new { Month = knowledgebase.knowledgeDate.Month, Year = knowledgebase.knowledgeDate.Year } into k
-                                           select new DotNet.Highcharts.Options.Point 
+                var knowledgeCreateStat = (from create in db.Knowledgebases.ToList()
+                                           group create by new { Month = create.knowledgeDate.Month, Year = create.knowledgeDate.Year } into c
+                                           select new DotNet.Highcharts.Options.Point
                                            {
-                                               Name = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(k.Key.Month) + "/" + k.Key.Year,
-                                               X = k.Count()      
+                                               Name = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(c.Key.Month) + "/" + c.Key.Year,
+                                               Y = c.Count()
                                            }).ToArray();
-
+                                    
                 var knowledgeCommentStat = (from comment in db.KnowledgeComments.ToList()
-                                            group comment by new { Month = comment.commentDate.Month, Year = comment.commentDate.Year} into k
+                                            //where comment.commentDate == DateTime.Now
+                                            group comment by new { Month = comment.commentDate.Month, Year = comment.commentDate.Year } into c
                                             select new DotNet.Highcharts.Options.Point
                                             {
-                                                Name = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(k.Key.Month) + "/" + k.Key.Year,
-                                                Y = k.Count()
+                                                Name = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(c.Key.Month) + "/" + c.Key.Year,
+                                                Y = c.Count()
                                             }).ToArray();
 
-                var knowledgeCreateCommentStatChart = new Highcharts("KnowledgeCreateCommentStat")
-                .SetTitle(new Title{Text = "Create/Comment Knowledgebase in each month"})
+                var knowledgeBaseCommentStatChart = new Highcharts("KnowledgeCreateCommentStat")
+                .SetTitle(new Title { Text = "Create/Comment Knowledgebase in each month" })
                 .SetXAxis(new DotNet.Highcharts.Options.XAxis
                 {
-                    Categories = knowledgeCommentStat.Union(knowledgeCreateStat).Select(x => x.Name).GroupBy(x => x).Select(x => x.Key).ToArray()
+                    Categories = knowledgeCommentStat.Union(knowledgeCreateStat).Select(x => x.Name).GroupBy(x => x).Select(x => x.Key).ToArray() 
+                })
+                .SetYAxis(new YAxis
+                {
+                    Min = 0
                 })
                 .SetSeries(new Series[] {
                         new Series
@@ -122,7 +126,7 @@ namespace tskmProject.Controllers
                             Name = "Comment",
                             Data = new Data(knowledgeCommentStat)
                         }});
-                ViewBag.KnowledgeCreateCommentStatChart = knowledgeCreateCommentStatChart;
+                ViewBag.KnowledgeCreateCommentStatChart = knowledgeBaseCommentStatChart;
                 #endregion
 
             }
