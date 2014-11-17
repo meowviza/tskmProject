@@ -36,7 +36,7 @@
                 @Html.DisplayFor(model => model.Assignee.userFname)
                 @if (CurrentUser.GetRoles().Any(x => x.Name == "Admin" || x.Name == "IT Manager" || (x.Name == "IT User" && @Model.AssigneeID == CurrentUser.GetUserID())))
                 {
-                    @Html.ActionLink("มอบหมาย", "Assign", new { id = @Model.ticketID }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("มอบหมาย", "Assign", new { id = @Model.ticketID }, new { @class = "glyphicon glyphicon-user" , role = "button"})
                 }
             </dd>
             <dt class="col-md-4">

@@ -37,17 +37,17 @@
             </dd>
             <br />
             <p class="col-md-4">
-                @Html.ActionLink("ตอบ", "Comment", new { id = Model.knowledgeID }) |
-                @Html.ActionLink("กลับสู่เมนูหลัก", "Index")
+                @Html.ActionLink("ตอบ", "Comment", new { id = Model.knowledgeID }, new { @class = "glyphicon glyphicon-file" }) 
             </p>
         </dl>
     </div>
 </div>
+
 @foreach (var item in Model.KnowledgeComment)
 {
     <div class="panel panel-success">
         <div class="panel-heading">
-           <b>ตอบกลับโดย</b>  @item.User.userFname
+            <b>ตอบกลับโดย</b>  @item.User.userFname
         </div>
         <div class="panel-body">
             <dl class="dl-horizontal">
@@ -56,6 +56,11 @@
                 <dt>เมื่อ</dt>
                 <dd>@item.commentDate</dd>
             </dl>
+        </div>
+    </div>
+    <div class=" row">
+        <div class="col-md-12 text-center">
+            @Html.ActionLink("กลับสู่เมนูหลัก", "Index")
         </div>
     </div>
 }

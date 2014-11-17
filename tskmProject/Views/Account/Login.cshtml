@@ -2,32 +2,32 @@
 @{
     ViewBag.Title = "ระบบแจ้งปัญาและติดตามงาน โดยใช้การจัดการความรู้";
 }
-
 <br />
 <div class="row">
     <div class="col-md-12">
         @Html.ValidationSummary(true, "Login Failed")
         <div class="container-fluid">
             <div class="panel panel-info">
-                <div class="panel-heading"><strong>เข้าสู่ระบบ</strong></div>
+                <div class="panel-heading">
+                    <div class="glyphicon glyphicon-lock"><strong>เข้าสู่ระบบ</strong>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <div class="row">
                         <br />
                         <form class="form-horizontal" method="post">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.username, "ชื่อผู้ใช้งาน", new { @class = "col-md-2 control-label"})
+                                @Html.LabelFor(model => model.username, "ชื่อผู้ใช้งาน", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-3">
                                     @Html.TextBoxFor(model => model.username, new { @class = "form-control" })
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.password, "รหัสผ่าน", new { @class = "col-md-2 control-label"})
+                                @Html.LabelFor(model => model.password, "รหัสผ่าน", new { @class = "col-md-2 control-label" })
                                 <div class="col-md-3">
                                     @Html.PasswordFor(model => model.password, new { @class = "form-control" })
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-md-2 col-md-offset-2">
                                     <br />
@@ -40,6 +40,4 @@
             </div>
         </div>
     </div>
-
 </div>
-
