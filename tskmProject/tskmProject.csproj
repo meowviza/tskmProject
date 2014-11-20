@@ -301,6 +301,7 @@
     <Content Include="images\paper.png" />
     <Content Include="images\search.png" />
     <Content Include="images\task_report.png" />
+    <Content Include="images\test.png" />
     <Content Include="images\ticket.png" />
     <Content Include="images\user_group.png" />
     <Content Include="Models\tskm.edmx.sql" />
@@ -464,7 +465,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Status\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Project_Readme.html" />
