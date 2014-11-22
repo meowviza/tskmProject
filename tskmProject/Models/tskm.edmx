@@ -194,6 +194,7 @@
     </Key>
     <Property Name="fileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fileName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContentType" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -702,6 +703,7 @@
           <Property Name="fileName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Tickets" Relationship="tskm.TicketFiles" FromRole="File" ToRole="Ticket" />
           <NavigationProperty Name="Knowledgebases" Relationship="tskm.FileKnowledgebases" FromRole="File" ToRole="Knowledgebase" />
+          <Property Name="ContentType" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="DepartmentUser">
           <End Type="tskm.Department" Role="Department" Multiplicity="1" />
@@ -1027,6 +1029,7 @@
         <MappingFragment StoreEntitySet="Files">
           <ScalarProperty Name="fileID" ColumnName="fileID" />
           <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

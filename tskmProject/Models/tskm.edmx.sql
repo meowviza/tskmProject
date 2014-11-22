@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/01/2014 13:12:31
--- Generated from EDMX file: C:\Users\ViZa\Documents\Visual Studio 2013\Projects\tskmProject\tskmProject\Models\tskm.edmx
+-- Date Created: 11/22/2014 23:20:40
+-- Generated from EDMX file: C:\Users\tnasan\Source\Repos\tskmProject\tskmProject\Models\tskm.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -218,7 +218,8 @@ GO
 -- Creating table 'Files'
 CREATE TABLE [dbo].[Files] (
     [fileID] int IDENTITY(1,1) NOT NULL,
-    [fileName] nvarchar(max)  NOT NULL
+    [fileName] nvarchar(max)  NOT NULL,
+    [ContentType] nvarchar(max)  NOT NULL
 );
 GO
 

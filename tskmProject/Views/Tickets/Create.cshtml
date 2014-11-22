@@ -4,7 +4,7 @@
     ViewBag.Title = "สร้างใบงาน";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Tickets", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -59,10 +59,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">เอกสารประกอบ</label>
                     <div class="col-md-10">
-                        @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <input type="file" name="FileUpload" />
-                        }
+                        <input type="file" name="FileUpload" multiple>
                     </div>
                 </div>
 

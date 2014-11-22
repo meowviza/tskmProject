@@ -156,11 +156,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FileHelper.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UserHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\KnowledgebasesController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -464,7 +466,8 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Project_Readme.html" />

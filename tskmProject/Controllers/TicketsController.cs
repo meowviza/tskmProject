@@ -94,6 +94,21 @@ namespace tskmProject.Controllers
                 ticket.CreatedDate = DateTime.Now;
                 ticket.UpdatedDate = DateTime.Now;
                 ticket.Status = db.Status.Single(x => x.statusName == "Opened");
+
+                #region File Upload
+                List<File> fileList = new List<Models.File>();
+                for (int i = 0; i < Request.Files.Count; ++i)
+                {
+                    File fileUpload = FileHelper.Save(Request.Files[i], Server.MapPath("~/App_Data/uploads"));
+                    fileList.Add(fileUpload);
+                }
+
+                var dbFiles = from dbFile in db.Files.ToList()
+                             join file in fileList on dbFile.fileID equals file.fileID
+                             select dbFile;
+                ticket.Files = dbFiles.ToList();
+                #endregion
+
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
 
