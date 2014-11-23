@@ -31,7 +31,7 @@ namespace tskmProject.Controllers
                                         }).ToList();
 
                 var ticketStatusRatioChart = new Highcharts("TicketStatusRatio")
-                    .SetTitle(new Title { Text = "Ticket Status Ratio" })
+                    .SetTitle(new Title { Text = "สรุปสถานะใบงาน" })
                     .SetSeries(new Series
                     {
                         Type = ChartTypes.Pie,
@@ -62,7 +62,7 @@ namespace tskmProject.Controllers
                                        }).ToArray();
 
                 var ticketOpenCloseStatChart = new Highcharts("TicketOpenCloseStat")
-                    .SetTitle(new Title { Text = "Opened/Closed Ticket in each month" })
+                    .SetTitle(new Title { Text = "การเปิด-ปิดใบงาน" })
                     .SetXAxis(new DotNet.Highcharts.Options.XAxis
                     {
                         Categories = ticketCloseStat.Union(ticketOpenStat).Select(x => x.Name).GroupBy(x => x).Select(x => x.Key).ToArray()
@@ -104,7 +104,7 @@ namespace tskmProject.Controllers
                                             }).ToArray();
 
                 var knowledgeBaseCommentStatChart = new Highcharts("KnowledgeCreateCommentStat")
-                .SetTitle(new Title { Text = "Create/Comment Knowledgebase in each month" })
+                .SetTitle(new Title { Text = "แนวโน้มการสร้างและถาม-ตอบความรู้" })
                 .SetXAxis(new DotNet.Highcharts.Options.XAxis
                 {
                     Categories = knowledgeCommentStat.Union(knowledgeCreateStat).Select(x => x.Name).GroupBy(x => x).Select(x => x.Key).ToArray() 

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "เมนูหลัก";
 }
 <br />
@@ -10,22 +9,21 @@
             <div class="alert alert-warning" role="alert">
                 @if (ViewBag.NumberOfAssignedTicket > 0)
                 {
-                    <div>คุณมีงานได้รับมอบหมาย <strong>@ViewBag.NumberOfAssignedTicket</strong> tickets.</div>
+                    <div>คุณมีงานได้รับมอบหมาย <strong>@ViewBag.NumberOfAssignedTicket</strong> ใบงาน</div>
                 }
                 @if (ViewBag.NumberOfWaitingForClosingTicket > 0)
                 {
-                    <div>คุณมีงานรอปิดใบงาน <strong>@ViewBag.NumberOfWaitingForClosingTicket</strong> tickets.</div>
+                    <div>คุณมีงานรอปิดใบงาน <strong>@ViewBag.NumberOfWaitingForClosingTicket</strong> ใบงาน</div>
                 }
             </div>
         </div>
     </div>
-} 
+}
 <div class="row">
     <div class="col-md-12">
-        <div class="page-header">
-            <img src="~/images/test.png" class="img-responsive" alt="Responsive image" />
+        <div class="row">
+            <h3 class="page-header">เมนูหลัก</h3>
         </div>
-
 
         @if (User.IsInRole("Admin") || User.IsInRole("IT Manager") || User.IsInRole("IT User"))
         {
