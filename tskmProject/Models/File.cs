@@ -22,6 +22,7 @@ namespace tskmProject.Models
     
         public int fileID { get; set; }
         public string fileName { get; set; }
+        public string ContentType { get; set; }
     
         public virtual ICollection<Ticket> Tickets { get; set; }
         public virtual ICollection<Knowledgebase> Knowledgebases { get; set; }
